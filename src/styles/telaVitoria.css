@@ -1,0 +1,36 @@
+.telaVitoria {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.janela {
+    background-color: #222;
+    border: 3px solid #fff;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    color: yellow;
+}
+
+.janela button {
+    background-color: transparent;
+    color: aliceblue;
+    border-color: aliceblue;
+    border-radius: 10px 10px 10px 10px;
+    font-size: 20px;
+    padding: 15px;
+    margin: 10px;
+}
+
+.janela button:hover {
+    transform: scale(1.1);
+    background-color: rgb(121, 124, 126);
+}
