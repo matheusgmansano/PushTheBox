@@ -4,7 +4,7 @@ export default function createScript(mapaInicial, proximaFase) {
             return {
                 mapa1: mapaInicial, // Mapa original da fase
                 mapa: [], 
-                mensagem: '', // Mensagem que será exibida ao jogador, ao concluir a fase
+                mensagem: '', // Mensagem que será exibida ao jogador, ao concluir a fase.
                 mostrarProximaFase: false // Caso seja true, o painel de vitória será exibido
             };
         },
