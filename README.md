@@ -31,20 +31,20 @@ Obs: Certifique-se de ter o Node.js e o git instalados no seu computador.
 
 ## Como jogar
 
-  .Movimentação: Use as teclas direcionais do teclado (↑, ↓, ←, →) para mover o personagem pelo cenário.
-  .Objetivo: Empurre as caixas até os locais marcados ou indicados no mapa.
+  - Movimentação: Use as teclas direcionais do teclado (↑, ↓, ←, →) para mover o personagem pelo cenário.
+  - Objetivo: Empurre as caixas até os locais marcados ou indicados no mapa.
 
 ## Regras importantes:
 
-  .O personagem só consegue empurrar, não puxar as caixas.
-  .Planeje bem os movimentos: se empurrar a caixa para um canto sem saída, talvez não consiga mais movê-la.
-  .Vitória: Você vence a fase quando todas as caixas estiverem posicionadas corretamente nos locais indicados.
-  .Divirta-se resolvendo os desafios e pensando nas melhores estratégias para completar cada nível!
+  - O personagem só consegue empurrar, não puxar as caixas.
+  - Planeje bem os movimentos: se empurrar a caixa para um canto sem saída, talvez não consiga mais movê-la.
+  - Vitória: Você vence a fase quando todas as caixas estiverem posicionadas corretamente nos locais indicados.
+  - Divirta-se resolvendo os desafios e pensando nas melhores estratégias para completar cada nível!
 
 ## Tecnologias
 
-  . JavaScript
-  . CSS
-  . Vue
-  . HTML
+  - JavaScript
+  - CSS
+  - Vue
+  - HTML
   
