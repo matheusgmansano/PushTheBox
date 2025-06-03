@@ -14,7 +14,6 @@ export default createScript(mapa2, '/fase3');
   <title>Fase 2</title>
   <button @click="voltar" class="botaoVoltar">INÍCIO</button>
 
-  <!-- falta adicionar cronometro (3 min)-->
   <div class="tela">
     <h1>Fase 2</h1>
     <div class="mapa">

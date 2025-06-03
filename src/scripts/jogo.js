@@ -1,24 +1,26 @@
-export default function createScript(mapaInicial, proximaFase) {
+export default function createScript(mapaInicial, proximaFase, tempoLimiteSegundos) {
     return {
         data() {
             return {
                 mapa1: mapaInicial, // Mapa original da fase
                 mapa: [], 
                 mensagem: '', // Mensagem que será exibida ao jogador, ao concluir a fase
-                mostrarProximaFase: false // Caso seja true, o painel de vitória será exibido
+                mostrarProximaFase: false, // Caso seja true, o painel de vitória será exibido
+                cronometro: 0,
+                intervaloCronometro: null
             };
         },
 
         mounted() {
             this.mostrarProximaFase = false; // Garante que a tela de vitória não apareça
-            this.mapa = this.mapa1.map(row => row.map(cell => cell.trim()));
-            // Clona o mapa inicial
-            window.addEventListener('keydown', this.mover);
-            // Usado para detectar o movimento do teclado
+            this.mapa = this.mapa1.map(row => row.map(cell => cell.trim())); // Clona o mapa inicial
+            window.addEventListener('keydown', this.mover); // Usado para detectar o movimento do teclado
+            this.iniciarCronometro(); // Inicia o cronometro
         },
 
         beforeUnmount() {
             window.removeEventListener('keydown', this.mover);
+            this.pararCronometro();
         },
 
         methods: {
@@ -35,15 +37,38 @@ export default function createScript(mapaInicial, proximaFase) {
                 return 'vazio';
             },
 
+            iniciarCronometro() {
+                if (this.intervaloCronometro) clearInterval(this.intervaloCronometro);
+
+                this.intervaloCronometro = setInterval(() => {
+                    this.cronometro++;
+
+                    if (this.cronometro >= tempoLimiteSegundos) {
+                        this.reiniciar();
+                    }
+                }, 1000);
+            },
+
+
+            pararCronometro() {
+                if (this.intervaloCronometro) {
+                    clearInterval(this.intervaloCronometro);
+                    this.intervaloCronometro = null;
+                }
+            },
+
             // Reinicia a fase, restaurando o mapa original
             reiniciar() {
-                this.mapa = this.mapa1.map(row => [...row]); // Clona o mapa original
-                this.mostrarProximaFase = false; // Oculta a tela de vitória
-                this.mensagem = ''; // Limpa a mensagem de vitória
+                this.mapa = this.mapa1.map(row => [...row]);
+                this.mostrarProximaFase = false;
+                this.cronometro = 0;
+                this.pararCronometro();
+                this.iniciarCronometro();
             },
 
             // Volta para a tela inicial
             voltar() {
+                this.pararCronometro();
                 this.$router.push('/');
             },
 
@@ -137,6 +162,7 @@ export default function createScript(mapaInicial, proximaFase) {
                 if (blocosCorretos === totalObjetivos) {
                     this.mensagem = 'Parabéns!';
                     this.mostrarProximaFase = true;
+                    this.pararCronometro(); // Para o cronometro aqui
                 } else {
                     this.mensagem = '';
                     this.mostrarProximaFase = false;

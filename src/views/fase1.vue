@@ -6,7 +6,7 @@ import '@/styles/body.css';
 import '@/styles/botoes.css';
 import '@/styles/telaVitoria.css';
 
-export default createScript(mapa1, '/fase2');
+export default createScript(mapa1, '/fase2', 10);
 </script>
 
 <template>
@@ -14,9 +14,9 @@ export default createScript(mapa1, '/fase2');
   <title>Fase 1</title>
   <button @click="voltar" class="botaoVoltar">INÍCIO</button>
 
-  <!-- falta adicionar cronometro (3 min)-->
   <div class="tela">
     <h1>Fase 1</h1>
+    <p>{{ cronometro }}</p>
     <div class="mapa">
       <div v-for="(linha, y) in mapa" :key="y" class="linha">
         <div v-for="(tipoCelula, x) in linha" :key="x" :class="classeParaPosicao(y, x)">
