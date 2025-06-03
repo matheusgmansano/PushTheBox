@@ -1,29 +1,43 @@
-# jogoNovo
+# Push the Box
 
-This template should help get you started developing with Vue 3 in Vite.
+O Push the Box é um jogo simples desenvolvido como parte de um trabalho de faculdade. O objetivo do jogador é empurrar duas caixas até o local designado como objetivo.
 
-## Recommended IDE Setup
+## Sobre
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+O projeto foi criado com o objetivo de desenvolver um jogo simples, utilizando conceitos de lógica e programação front-end, para um trabalho acadêmico.
+Desenvolvido por Davi Bomfim Climaco;
+                 Heitor Henrique Couto Silva;
+                 Matheus De Oliveira Mascarello;
+                 Matheus Gregorio Mansano;
+                 Talis de Mello Sossai.
 
-## Customize configuration
+## Instalação
 
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
+Siga os passos abaixos para instalar o projeto e rodar o projeto localmente:
 ```sh
+Clone o repositório
+git clone https://github.com/matheusgmansano/PushTheBox.git
+
+Acesse o diretório do projeto
+cd PushTheBox
+
+Instale as depedências
 npm install
-```
 
-### Compile and Hot-Reload for Development
-
-```sh
+Execute o projeto
 npm run dev
 ```
+Obs: Certifique-se de ter o Node.js e o git instalados no seu computador.
 
-### Compile and Minify for Production
+## Como jogar
 
-```sh
-npm run build
-```
+  . Use as teclas direcionais para mover o personagem.
+  . Empurre as caixas até o local indicado para vencer.
+
+## Tecnologias
+
+  . JavaScript
+  . CSS
+  . Vue
+  . HTML
+  
