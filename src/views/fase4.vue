@@ -1,22 +1,22 @@
 <script>
-import { mapa3 } from '@/mapas/mapa3.js';
+import { mapa4 } from '@/mapas/mapa4.js';
 import createScript from '@/scripts/jogo';
 import '@/styles/elementosMapa.css';
 import '@/styles/body.css';
 import '@/styles/botoes.css';
 import '@/styles/telaVitoria.css';
 
-export default createScript(mapa3, '/fase4');
+export default createScript(mapa4, '/fase5');
 </script>
 
 <template>
 
-  <title>Fase 3</title>
+  <title>Fase 4</title>
   <button @click="voltar" class="botaoVoltar">INÍCIO</button>
 
   <!-- falta adicionar cronometro (3 min)-->
   <div class="tela">
-    <h1>Fase 3</h1>
+    <h1>Fase 4</h1>
     <div class="mapa">
       <div v-for="(linha, y) in mapa" :key="y" class="linha">
         <div v-for="(tipoCelula, x) in linha" :key="x" :class="classeParaPosicao(y, x)">

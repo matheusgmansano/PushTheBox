@@ -14,11 +14,12 @@ export default createScript(mapa2, '/fase3');
   <title>Fase 2</title>
   <button @click="voltar" class="botaoVoltar">INÍCIO</button>
 
+  <!-- falta adicionar cronometro (3 min)-->
   <div class="tela">
     <h1>Fase 2</h1>
     <div class="mapa">
       <div v-for="(linha, y) in mapa" :key="y" class="linha">
-        <div v-for="(celula, x) in linha" :key="x" :class="getClasse(y, x)">
+        <div v-for="(tipoCelula, x) in linha" :key="x" :class="classeParaPosicao(y, x)">
 
         </div>
       </div>
