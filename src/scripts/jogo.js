@@ -12,16 +12,37 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
         },
 
         mounted() {
-            this.mostrarProximaFase = false; // Garante que a tela de vitória não apareça
-            this.mapa = this.mapa1.map(row => row.map(cell => cell.trim())); // Clona o mapa inicial
-            window.addEventListener('keydown', this.mover); // Usado para detectar o movimento do teclado
-            this.iniciarCronometro(); // Inicia o cronometro
-        },
+    // Configuração inicial do mapa
+    this.mostrarProximaFase = false; // Garante que a tela de vitória não apareça
+    this.mapa = this.mapa1.map(row => row.map(cell => cell.trim())); // Clona o mapa inicial
+    window.addEventListener('keydown', this.mover); // Detecta movimento do teclado
+    this.iniciarCronometro(); // Inicia o cronômetro
 
-        beforeUnmount() {
-            window.removeEventListener('keydown', this.mover);
-            this.pararCronometro();
-        },
+    // Configuração do áudio
+    this.audio = new Audio('/audio/easy-theme/main_theme_01.wav'); // Ajuste o caminho se necessário
+    this.audio.loop = true;
+    this.audio.volume = 0.5;
+
+    const iniciarMusica = () => {
+      this.audio.play();
+      document.removeEventListener('click', iniciarMusica);
+    };
+
+    document.addEventListener('click', iniciarMusica);
+  },
+
+  beforeUnmount() {
+    // Remover eventos e parar cronômetro
+    window.removeEventListener('keydown', this.mover);
+    this.pararCronometro();
+
+    // Parar áudio
+    if (this.audio) {
+      this.audio.pause();
+      this.audio.currentTime = 0;
+    }
+  },
+
 
         methods: {
             // Define a classe CSS de cada cédula, com base no seu conteúdo
@@ -174,6 +195,6 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
                 this.mostrarProximaFase = false;
                 this.$router.push(proximaFase)
             }
-        }
-    }
+        }
+    }
 }
