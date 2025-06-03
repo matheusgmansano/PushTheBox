@@ -5,6 +5,7 @@ import '@/styles/elementosMapa.css';
 import '@/styles/body.css';
 import '@/styles/botoes.css';
 import '@/styles/telaVitoria.css';
+import '@/styles/telaDerrota.css';
 
 export default createScript(mapa1, '/fase2', 10);
 </script>
@@ -35,6 +36,14 @@ export default createScript(mapa1, '/fase2', 10);
       <button @click="voltar" class="botaoVitoria">Menu</button>
     </div>
   </div>
+
+  <div v-if="mostrarDerrota" class="telaDerrota">
+  <div class="janela">
+    <h2>Tempo Esgotado!</h2>
+    <button @click="reiniciar" class="botaoVitoria">Reiniciar</button>
+    <button @click="voltar" class="botaoVitoria">Menu</button>
+  </div>
+</div>
 
 </template>
 

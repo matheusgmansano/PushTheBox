@@ -6,6 +6,7 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
                 mapa: [], 
                 mensagem: '', // Mensagem que será exibida ao jogador, ao concluir a fase
                 mostrarProximaFase: false, // Caso seja true, o painel de vitória será exibido
+                mostrarDerrota: false,    // Variável para a tela de derrota
                 cronometro: 0,
                 intervaloCronometro: null
             };
@@ -58,15 +59,17 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
                 return 'vazio';
             },
 
+
             iniciarCronometro() {
                 if (this.intervaloCronometro) clearInterval(this.intervaloCronometro);
 
                 this.intervaloCronometro = setInterval(() => {
                     this.cronometro++;
 
-                    if (this.cronometro >= tempoLimiteSegundos) {
-                        this.reiniciar();
-                    }
+                     if (this.cronometro >= tempoLimiteSegundos) {
+                        clearInterval(this.intervaloCronometro); // Para o cronômetro
+                        this.mostrarDerrota = true;              // Mostra a tela de derrota
+                     }
                 }, 1000);
             },
 
@@ -81,7 +84,8 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
             // Reinicia a fase, restaurando o mapa original
             reiniciar() {
                 this.mapa = this.mapa1.map(row => [...row]);
-                this.mostrarProximaFase = false;
+                this.mostrarProximaFase = false; // some a imagem da tela
+                this.mostrarDerrota = false; //some a imagem da tela
                 this.cronometro = 0;
                 this.pararCronometro();
                 this.iniciarCronometro();
