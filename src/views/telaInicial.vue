@@ -2,14 +2,37 @@
 import '@/styles/botoes.css';
 import '@/styles/body.css';
 
-
 export default {
+  data() {
+    return {
+      audio: null
+    };
+  },
+  mounted() {
+    this.audio = new Audio('/audio/hard-theme/desertbounce-trimmed.wav');
+    this.audio.loop = true;
+    this.audio.volume = 0.2;
+
+    const iniciarMusica = () => {
+      this.audio.play();
+      document.removeEventListener('click', iniciarMusica);
+    };
+
+    document.addEventListener('click', iniciarMusica);
+  },
+  beforeUnmount() {
+    // Parar áudio
+    if (this.audio) {
+      this.audio.pause();
+      this.audio.currentTime = 0;
+    }
+  },
   methods: {
     irParaLabirinto() {
-      this.$router.push('/fase1')
+      this.$router.push('/fase1');
     }
   }
-}
+};
 </script>
 
 <template>

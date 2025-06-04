@@ -1,6 +1,6 @@
 <script>
 import { mapa1 } from '@/mapas/mapa1.js';
-import createScript from '@/scripts/jogo';
+import createScript from '@/javascript/createScript';
 import '@/styles/elementosMapa.css';
 import '@/styles/body.css';
 import '@/styles/botoes.css';
