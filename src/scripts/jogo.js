@@ -8,7 +8,8 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
                 mostrarProximaFase: false, // Caso seja true, o painel de vitória será exibido
                 mostrarDerrota: false,    // Variável para a tela de derrota
                 cronometro: 0,
-                intervaloCronometro: null
+                intervaloCronometro: null,
+                jogoAtivo: true // mostra se o jogagor pode continuar mexendo
             };
         },
 
@@ -69,6 +70,7 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
                      if (this.cronometro >= tempoLimiteSegundos) {
                         clearInterval(this.intervaloCronometro); // Para o cronômetro
                         this.mostrarDerrota = true;              // Mostra a tela de derrota
+                        this.jogoAtivo = false;  //Desativa a movimentacao do personagem
                      }
                 }, 1000);
             },
@@ -89,6 +91,7 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
                 this.cronometro = 0;
                 this.pararCronometro();
                 this.iniciarCronometro();
+                this.jogoAtivo = true;
             },
 
             // Volta para a tela inicial
@@ -99,7 +102,7 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
 
             // Movimentação do jogador
             mover(event) {
-
+                if (!this.jogoAtivo) return;  // ✅ Se não estiver ativo, não move
                 let yJogador = -1;
                 let xJogador = -1;
 
@@ -187,6 +190,7 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
                 if (blocosCorretos === totalObjetivos) {
                     this.mensagem = 'Parabéns!';
                     this.mostrarProximaFase = true;
+                    this.jogoAtivo = false;  // ✅ Parar o jogo ao vencer
                     this.pararCronometro(); // Para o cronometro aqui
                 } else {
                     this.mensagem = '';
