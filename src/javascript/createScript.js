@@ -17,7 +17,9 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
                 cronometro: 0,
                 intervaloCronometro: null,
                 jogoAtivo: true,
-                audio: null
+                audio: null,
+                audioDerrota: null,
+                audioVitoria: null,
             };
         },
 
@@ -26,6 +28,10 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
             window.addEventListener('keydown', this.processarMovimento);
             this.iniciarCronometro();
             this.audio = configurarAudio();
+            this.audioDerrota = new Audio('/public/audio/somDerrota.mp3');
+            this.audioDerrota.volume = 0.3;
+            this.audioVitoria = new Audio('/public/audio/somVitoria.mp3');
+            this.audioVitoria.volume = 0.3;  // Ajuste também
         },
 
         beforeUnmount() {
@@ -35,6 +41,18 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
                 this.audio.pause();
                 this.audio.currentTime = 0;
             }
+
+            if (this.audioDerrota) {
+            this.audioDerrota.pause();
+            this.audioDerrota.currentTime = 0;
+
+            }
+            if (this.audioVitoria) {
+                this.audioVitoria.pause();
+                this.audioVitoria.currentTime = 0;
+            }
+    
+
         },
 
         methods: {
@@ -54,6 +72,17 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
                         clearInterval(this.intervaloCronometro);
                         this.mostrarDerrota = true;
                         this.jogoAtivo = false;
+
+                    //PARA A MUSICA PRINCIPAL QUANDO ACABA O TEMPO
+                    if (this.audio) {
+                        this.audio.pause();
+                        this.audio.currentTime = 0;
+                    }
+
+                    // COMECA A TOCAR O SOM DE DERROTA
+                    if (this.audioDerrota) {
+                        this.audioDerrota.play();
+                    }
                     }
                 }, 1000);
             },
@@ -84,6 +113,17 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
                     this.mostrarProximaFase = true;
                     this.jogoAtivo = false;
                     pararCronometro(this.intervaloCronometro);
+
+                    // Para a música principal
+                    if (this.audio) {
+                        this.audio.pause();
+                        this.audio.currentTime = 0;
+                    }
+
+                    // Toca som de vitória
+                    if (this.audioVitoria) {
+                        this.audioVitoria.play();
+                    }
                 }
             },
 

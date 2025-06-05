@@ -28,7 +28,7 @@ export default {
     }
   },
   methods: {
-    irParaLabirinto() {
+    irParaHistoria() {
       this.$router.push('/historia');
     }
   }
@@ -40,7 +40,7 @@ export default {
 
   <div class="tela">
     <h1 class="titulo">Push the Box</h1>
-    <button @click="irParaLabirinto" class="botaoIniciar">INICIAR</button>
+    <button @click="irParaHistoria" class="botaoIniciar">INICIAR</button>
   </div>
 
 </template>
