@@ -20,7 +20,7 @@ export default createScript(mapa1, '/fase2', 10);
     <p>{{ cronometro }}</p>
     <div class="mapa">
       <div v-for="(linha, y) in mapa" :key="y" class="linha">
-        <div v-for="(tipoCelula, x) in linha" :key="x" :class="classeParaPosicao(tipoCelula)">
+        <div v-for="(tipoCelula, x) in linha" :key="x" :class="classeParaPosicao(y, x)">
 
         </div>
       </div>

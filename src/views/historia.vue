@@ -1,4 +1,6 @@
 <template>
+  <title>Historia</title>
+
   <div class="container">
     <div class="celular">
       <div class="topo">Chefe Malvado </div>
