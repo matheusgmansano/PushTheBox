@@ -62,11 +62,11 @@ export default {
   mounted() {
     // Criar pool para recebimento
     for (let i = 0; i < 5; i++) {
-      const audioReceb = new Audio('/public/audio/recebimento.mp3');
+      const audioReceb = new Audio('/audio/recebimento.mp3');
       audioReceb.volume = 0.3;
       this.audioRecebimentoPool.push(audioReceb);
 
-      const audioEnv = new Audio('/public/audio/envio.mp3');
+      const audioEnv = new Audio('/audio/envio.mp3');
       audioEnv.volume = 0.3;
       this.audioEnvioPool.push(audioEnv);
     }

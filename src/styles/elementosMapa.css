@@ -25,6 +25,12 @@
   background-position: center;
 }
 
+.jogadorObjetivo {
+    background-image: url('@/assets/personagemSobObjeto.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
 .bloco {
   background-image: url('@/assets/caixa.png');
   background-repeat: no-repeat;

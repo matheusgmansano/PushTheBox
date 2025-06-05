@@ -28,9 +28,9 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
             window.addEventListener('keydown', this.processarMovimento);
             this.iniciarCronometro();
             this.audio = configurarAudio();
-            this.audioDerrota = new Audio('/public/audio/somDerrota.mp3');
+            this.audioDerrota = new Audio('/audio/somDerrota.mp3');
             this.audioDerrota.volume = 0.3;
-            this.audioVitoria = new Audio('/public/audio/somVitoria.mp3');
+            this.audioVitoria = new Audio('/audio/somVitoria.mp3');
             this.audioVitoria.volume = 0.3;  // Ajuste também
         },
 

@@ -5,7 +5,7 @@ export function mover(mapa, event) {
     // Loop para encontrar a posição ATUAL do jogador 'P' no mapa.
     for (let y = 0; y < mapa.length; y++) {
         for (let x = 0; x < mapa[y].length; x++) {
-            if (mapa[y][x] === 'P') {
+            if (mapa[y][x] === 'P' || mapa[y][x] === 'JO') {
                 yJogador = y; // Linha
                 xJogador = x; // Coluna
                 break; // Sai do segundo FOR se o jogador for encontrado
@@ -35,6 +35,8 @@ export function mover(mapa, event) {
         case 'ArrowRight':
             xNovo++;
             break;
+        default : 
+            return mapa;
     }
 
     // Verifica se a nova posição está dentro dos limites do mapa.
@@ -42,10 +44,22 @@ export function mover(mapa, event) {
         let destinoJogador = mapa[yNovo][xNovo];
 
         // Se o destino for DIFERENTE de parede '#' e bloco 'B' permite a movimentação.
-        if (destinoJogador !== '#' && destinoJogador !== 'B') {
-            mapa[yJogador][xJogador] = ' ';
+        if (destinoJogador !== '#' && destinoJogador !== 'B' && destinoJogador !== 'X') {
+            if (mapa[yJogador][xJogador] === 'JO') {
+                mapa[yJogador][xJogador] = 'X';
+            } else {
+                mapa[yJogador][xJogador] = ' ';
+            }
             mapa[yNovo][xNovo] = 'P';
-        } 
+        }
+        else if (destinoJogador === 'X'){
+            if (mapa[yJogador][xJogador] === 'JO') {
+                mapa[yJogador][xJogador] = 'X';
+            } else {
+                mapa[yJogador][xJogador] = ' ';
+            }
+            mapa[yNovo][xNovo] = 'JO';
+        }
         // Caso o destino for bloco 'B', tenta empurrar o bloco.
         else if (destinoJogador === 'B') {
             // Calcula a posição logo depois do bloco, na mesma direção da movimentação.
