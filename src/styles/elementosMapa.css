@@ -15,6 +15,7 @@
 
 .jogador {
   background-image: url('@/assets/personagem.png');
+  animation: movimento 1s infinite alternate;
 }
 
 .jogadorObjetivo {
@@ -53,6 +54,11 @@
   width: 55px;
   height: 55px;
   border: 1px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes movimento {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-1px); }
 }
 
 @keyframes pulse {

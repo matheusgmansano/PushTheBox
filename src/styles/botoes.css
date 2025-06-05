@@ -3,7 +3,8 @@
     margin-top: 25px;
     bottom: auto;
     left: 25px;
-    background-color: transparent;
+    background-color: #575958;
+    border-radius: 10px 10px 10px 10px;
     border: none;
     font-size: 30px;
     color: aliceblue;
@@ -11,10 +12,13 @@
 
 .botaoVoltar:hover {
     transform: scale(1.15);
+    background-color: #575958;
+    border-radius: 15px 15px 15px 15px;
 }
 
 .botaoReiniciar {
-    background-color: transparent;
+    background-color: #575958;
+    border-radius: 10px 10px 10px 10px;
     border: none;
     font-size: 30px;
     color: aliceblue;
@@ -23,8 +27,6 @@
 
 .botaoReiniciar:hover {
     transform: scale(1.15);
-    background-color: #575958;
-    border-radius: 10px 10px 10px 10px;
 }
 
 .botaoIniciar {

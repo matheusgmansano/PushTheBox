@@ -10,7 +10,7 @@
           :key="index"
           :class="['fala', fala.personagem]"
         >
-          <p>{{ fala.texto }}</p>
+        <p>{{ fala.texto }}</p>
         </div>
         <button
           v-if="mostrarBotao"
