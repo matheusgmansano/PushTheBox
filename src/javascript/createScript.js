@@ -2,7 +2,7 @@ import { mover } from './movimentacaoPersonagem.js';
 import { verificarVitoria } from './checagemVitoria.js';
 import { configurarAudio } from './audio.js';
 import { iniciarCronometro, pararCronometro } from './timer.js';
-import { classeParaPosicao } from './gameLogic.js';
+import { classeParaPosicao as mapearClasse } from './gameLogic.js';
 import { clonarMapa } from './clonarMapa.js';
 
 export default function createScript(mapaInicial, proximaFase, tempoLimiteSegundos) {
@@ -57,7 +57,7 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
 
         methods: {
             classeParaPosicao(y, x) {
-                return classeParaPosicao(this.mapa[y][x]);
+                return mapearClasse(this.mapa[y][x]);
             },
 
             iniciarCronometro() {
