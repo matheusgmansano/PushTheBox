@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     irParaLabirinto() {
-      this.$router.push('/fase1');
+      this.$router.push('/historia');
     }
   }
 };
