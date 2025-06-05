@@ -15,31 +15,17 @@ Desenvolvido por
 ## Instalação
 
 Siga os passos abaixos para instalar o projeto e rodar o projeto localmente:
-```bash
+```sh
 Clone o repositório
-```
-```sh
 git clone https://github.com/matheusgmansano/PushTheBox.git
-```
 
-```bash
 Acesse o diretório do projeto
-```
-```sh
 cd PushTheBox
-```
 
-```bash
 Instale as depedências
-```
-```sh
 npm install
-```
 
-```bash
 Execute o projeto
-```
-```sh
 npm run dev
 ```
 Obs: Certifique-se de ter o Node.js e o git instalados no seu computador.
