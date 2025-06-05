@@ -3,7 +3,6 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  background-color: transparent;
 }
 
 .linha {
@@ -12,32 +11,48 @@
 
 .parede {
   background-image: url('@/assets/muro.png');
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  background-color: transparent;
 }
 
 .jogador {
   background-image: url('@/assets/personagem.png');
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
 }
 
 .jogadorObjetivo {
-    background-image: url('@/assets/personagemSobObjeto.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
+  background-image: url('@/assets/personagemSobObjeto.png');
 }
+
 .bloco {
   background-image: url('@/assets/caixa.png');
+  animation: pulse 5s infinite;
+}
+
+
+.objetivo {
+  background-image: url('@/assets/objetivo.png');
+}
+
+.objetivoJogador {
+  background-color: black;
+}
+
+.vazio {
+  background-color: transparent;
+  width: 55px;
+  height: 55px;
+  border: 1px rgba(0, 0, 0, 0.2);
+}
+
+.objetivo,
+.bloco,
+.jogadorObjetivo,
+.jogador,
+.parede {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  background-color: transparent;
-  animation: pulse 5s infinite;
+  width: 55px;
+  height: 55px;
+  border: 1px rgba(0, 0, 0, 0.2);
 }
 
 @keyframes pulse {
@@ -55,30 +70,4 @@
     transform: scale(1);
     opacity: 1;
   }
-}
-
-.objetivo {
-  background-image: url('@/assets/objetivo.png');
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-}
-
-.vazio {
-  background-color: transparent;
-}
-
-.objetivoJogador{
-  background-color: black;
-}
-
-.parede,
-.jogador,
-.bloco,
-.objetivo,
-.vazio,
-.jogadorObjetivo {
-  width: 55px;
-  height: 55px;
-  border: 1px rgba(0, 0, 0, 0.2);
 }
