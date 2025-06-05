@@ -24,6 +24,7 @@
 
 <script>
 import '@/styles/historia.css';
+
 export default {
   data() {
     return {
@@ -51,25 +52,58 @@ export default {
         },
       ],
       mostrarBotao: false,
+
+      // Pools para os dois sons
+      audioRecebimentoPool: [],
+      audioEnvioPool: [],
+      audioPoolIndex: 0,
     };
   },
   mounted() {
+    // Criar pool para recebimento
+    for (let i = 0; i < 5; i++) {
+      const audioReceb = new Audio('/public/audio/recebimento.mp3');
+      audioReceb.volume = 0.3;
+      this.audioRecebimentoPool.push(audioReceb);
+
+      const audioEnv = new Audio('/public/audio/envio.mp3');
+      audioEnv.volume = 0.3;
+      this.audioEnvioPool.push(audioEnv);
+    }
     this.exibirDialogo();
   },
   methods: {
     fase1() {
       this.$router.push('/fase1');
     },
+
     async exibirDialogo() {
       for (let i = 0; i < this.falasOriginais.length; i++) {
-        await new Promise((resolve) => setTimeout(resolve, 2000));
+        await new Promise(resolve => setTimeout(resolve, 2000));
         this.dialogo.push(this.falasOriginais[i]);
+
+        let audioToPlay;
+        if (i === this.falasOriginais.length - 2) {
+          // Penúltimo balão -> som de envio
+          audioToPlay = this.audioEnvioPool[this.audioPoolIndex];
+        } else {
+          // Outros balões -> som de recebimento
+          audioToPlay = this.audioRecebimentoPool[this.audioPoolIndex];
+        }
+
+        // Para evitar atraso, cortar o som no início (se necessário)
+        audioToPlay.currentTime = 0;
+        audioToPlay.play();
+
+        this.audioPoolIndex = (this.audioPoolIndex + 1) % this.audioRecebimentoPool.length;
       }
       this.mostrarBotao = true;
     },
   },
 };
 </script>
+
+
 
 <style scoped>
 
