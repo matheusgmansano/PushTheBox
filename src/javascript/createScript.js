@@ -95,6 +95,21 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
                 pararCronometro(this.intervaloCronometro);
                 this.iniciarCronometro();
                 this.jogoAtivo = true;
+                
+                if (this.audio) {
+                    this.audio.pause();
+                    this.audio.currentTime = 0;
+                    this.audio.play();
+                }
+
+                if (this.audioVitoria) {
+                    this.audioVitoria.pause();
+                    this.audioVitoria.currentTime = 0;
+                }
+                if (this.audioDerrota) {
+                    this.audioDerrota.pause();
+                    this.audioDerrota.currentTime = 0;
+                }
             },
 
             voltar() {
