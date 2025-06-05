@@ -5,11 +5,12 @@ O Push the Box é um jogo simples desenvolvido como parte de um trabalho de facu
 ## Sobre
 
 O projeto foi criado com o objetivo de desenvolver um jogo simples, utilizando conceitos de lógica e programação front-end, para um trabalho acadêmico.
-Desenvolvido por Davi Bomfim Climaco;
-                 Heitor Henrique Couto Silva;
-                 Matheus De Oliveira Mascarello;
-                 Matheus Gregorio Mansano;
-                 Talis de Mello Sossai.
+Desenvolvido por 
+- Davi Bomfim Climaco;
+- Heitor Henrique Couto Silva;
+- Matheus De Oliveira Mascarello;
+- Matheus Gregorio Mansano;
+- Talis de Mello Sossai.
 
 ## Instalação
 
