@@ -16,7 +16,7 @@ export default createScript(mapa2, '/fase3', 10);
   <button @click="voltar" class="botaoVoltar">INÍCIO</button>
 
   <div class="tela">
-    <h1 style="margin-bottom: -10px;">Fase 2</h1>
+    <h1>Fase 2</h1>
     <h2 style="color:orange ">{{ cronometro }}</h2>
     <div class="mapa">
       <div v-for="(linha, y) in mapa" :key="y" class="linha">

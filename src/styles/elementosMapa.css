@@ -38,8 +38,8 @@
   border: 1px rgba(0, 0, 0, 0.2);
 }
 
-.lava {
-  background-image: url('@/assets/lava.gif'); 
+.blocoVazio {
+  background-image: url('@/assets/blocoVazio.png');
   background-size: cover;
 }
 
@@ -48,7 +48,7 @@
 .jogadorObjetivo,
 .jogador,
 .parede,
-.lava {
+.blocoVazio {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
