@@ -14,6 +14,7 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
                 mensagem: '',
                 mostrarProximaFase: false,
                 mostrarDerrota: false,
+                tipoDerrota: '', // 'tempo', 'lava', etc.
                 cronometro: 0,
                 intervaloCronometro: null,
                 jogoAtivo: true,
@@ -32,6 +33,7 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
             this.audioDerrota.volume = 0.3;
             this.audioVitoria = new Audio('/audio/somVitoria.mp3');
             this.audioVitoria.volume = 0.3;  // Ajuste também
+            console.log(this.mapa)//teste
         },
 
         beforeUnmount() {
@@ -63,6 +65,7 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
             iniciarCronometro() {
                 let tempoRestante = tempoLimiteSegundos;
                 this.cronometro = tempoRestante;
+                this.tipoDerrota = 'tempo'; // PARA A TELA DE DERROTA SER POR TEMPO CASO APENAS ACABE
 
                 this.intervaloCronometro = setInterval(() => {
                     tempoRestante--;
@@ -121,7 +124,54 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
             processarMovimento(event) {
                 if (!this.jogoAtivo) return;
 
-                this.mapa = mover(this.mapa, event);
+                const novoMapa = mover(this.mapa, event);
+                this.mapa = novoMapa;
+
+                for (let y = 0; y < novoMapa.length; y++) {
+                    for (let x = 0; x < novoMapa[y].length; x++) {
+                        if (novoMapa[y][x] === 'P' && this.mapa1[y][x] === 'L') {  //CASO PERSONAGEM CAIA NA LAVA
+                            this.mostrarDerrota = true;
+                            this.jogoAtivo = false;
+                            this.tipoDerrota = 'lava';  //PARA SABER QUE SERA A TELA DE DERROTA DA LAVA
+
+                            pararCronometro(this.intervaloCronometro);
+
+                            // Para música principal
+                            if (this.audio) {
+                                this.audio.pause();
+                                this.audio.currentTime = 0;
+                            }
+
+                            // Toca som de derrota
+                            if (this.audioDerrota) {
+                                this.audioDerrota.play();
+                            }
+
+                            return;
+                        }
+
+                 if (novoMapa[y][x] === 'B' && this.mapa1[y][x] === 'L') {  //CASO BLOCO SEJA EMPURRADO PARA LAVA
+                            this.mostrarDerrota = true;
+                            this.jogoAtivo = false;
+                             this.tipoDerrota = 'lava';   //PARA SABER QUE SERA A TELA DE DERROTA DA LAVA
+
+                            pararCronometro(this.intervaloCronometro);
+
+                            if (this.audio) {
+                                this.audio.pause();
+                                this.audio.currentTime = 0;
+                            }
+
+                            if (this.audioDerrota) {
+                                this.audioDerrota.play();
+                            }
+
+                            return;
+                        }
+                    }
+                }
+
+                this.mapa = novoMapa;
 
                 if (verificarVitoria(this.mapa, this.mapa1)) {
                     this.mensagem = 'Parabéns!';

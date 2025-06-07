@@ -10,7 +10,7 @@ import '@/styles/telaMenu.css';
 
 
 export default {
-  mixins: [createScript(mapa1, '/fase2', 10)],
+  mixins: [createScript(mapa1, '/fase2teste', 10)],
   data() {
     return {
       mostrarMenu: false,
@@ -85,52 +85,14 @@ export default {
   </div>
 
   <div v-if="mostrarDerrota" class="telaDerrota">
-    <div class="janela">
-      <h2>Tempo Esgotado!</h2>
-      <button @click="reiniciar" class="botaoVitoria">Reiniciar</button>
-      <button @click="voltar" class="botaoVitoria">Menu</button>
-    </div>
+  <div class="janela">
+    <h2 v-if="tipoDerrota === 'tempo'">Tempo Esgotado!</h2>
+    <h2 v-else-if="tipoDerrota === 'lava'">Você caiu na lava!</h2>
+    <h2 v-else>Derrota!</h2>
+    <button @click="reiniciar" class="botaoVitoria">Reiniciar</button>
+    <button @click="voltar" class="botaoVitoria">Menu</button>
   </div>
+</div>
+
 </template>
 
-<style scoped>
-.menu-container {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  z-index: 1000;
-}
-
-.botaoMenu {
-  background-color: #444;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  font-size: 16px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.menu-dropdown {
-  margin-top: 10px;
-  background-color: #222;
-  border: 1px solid #555;
-  border-radius: 10px;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-}
-
-.menu-dropdown button {
-  background: none;
-  border: none;
-  color: white;
-  text-align: left;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
-.menu-dropdown button:hover {
-  background-color: #555;
-}
-</style>
