@@ -1,0 +1,52 @@
+
+.titulo {
+  color: rgb(255, 255, 255);
+  font-family: 'Silkscreen', monospace;
+  font-size: 60px;
+  animation: pulse 8s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.10); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.menu-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.botaoMenu {
+  background-color: #444;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.menu-dropdown {
+  margin-top: 10px;
+  background-color: #222;
+  border: 1px solid #555;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-dropdown button {
+  background: none;
+  border: none;
+  color: white;
+  text-align: left;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.menu-dropdown button:hover {
+  background-color: #555;
+}

@@ -6,14 +6,63 @@ import '@/styles/body.css';
 import '@/styles/botoes.css';
 import '@/styles/telaVitoria.css';
 import '@/styles/telaDerrota.css';
+import '@/styles/telaMenu.css';
 
-export default createScript(mapa1, '/fase2', 10);
+
+export default {
+  mixins: [createScript(mapa1, '/fase2', 10)],
+  data() {
+    return {
+      mostrarMenu: false,
+      somClique: null
+    };
+  },
+  mounted() {
+    this.somClique = new Audio('/audio/somButaoClick.mp3');
+    this.somClique.volume = 0.1;
+  },
+  methods: {
+    toggleMenu() {
+      this.mostrarMenu = !this.mostrarMenu;
+    },
+    tocarSom() {
+      if (this.somClique) {
+        this.somClique.currentTime = 0;
+        this.somClique.play();
+      }
+    },
+    reiniciarComSom() {
+      this.tocarSom();
+      this.reiniciar();
+    },
+    voltarComSom() {
+      this.tocarSom();
+      this.voltar();
+    },
+    irParaCreditosComSom() {
+      this.tocarSom();
+      this.irParaCreditos();
+    },
+    irParaCreditos() {
+      alert("Indo para Créditos...");
+    }
+  }
+};
 </script>
 
 <template>
-
   <title>Fase 1</title>
-  <button @click="voltar" class="botaoVoltar">INÍCIO</button>
+
+  <!-- Botão de Menu -->
+  <div class="menu-container">
+    <button @click="toggleMenu" class="botaoMenu">☰ MENU</button>
+
+    <div v-if="mostrarMenu" class="menu-dropdown">
+      <button @click="reiniciarComSom">Reiniciar</button>
+      <button @click="voltarComSom">Voltar início</button>
+      <button @click="irParaCreditosComSom">Créditos</button>
+    </div>
+  </div>
 
   <div class="tela">
     <h1 style="margin-bottom: -10px;">Fase 1</h1>
@@ -21,11 +70,9 @@ export default createScript(mapa1, '/fase2', 10);
     <div class="mapa">
       <div v-for="(linha, y) in mapa" :key="y" class="linha">
         <div v-for="(tipoCelula, x) in linha" :key="x" :class="classeParaPosicao(y, x)">
-
         </div>
       </div>
     </div>
-    <button @click="reiniciar" class="botaoReiniciar">Reiniciar</button>
   </div>
 
   <div v-if="mostrarProximaFase" class="telaVitoria">
@@ -38,15 +85,52 @@ export default createScript(mapa1, '/fase2', 10);
   </div>
 
   <div v-if="mostrarDerrota" class="telaDerrota">
-  <div class="janela">
-    <h2>Tempo Esgotado!</h2>
-    <button @click="reiniciar" class="botaoVitoria">Reiniciar</button>
-    <button @click="voltar" class="botaoVitoria">Menu</button>
+    <div class="janela">
+      <h2>Tempo Esgotado!</h2>
+      <button @click="reiniciar" class="botaoVitoria">Reiniciar</button>
+      <button @click="voltar" class="botaoVitoria">Menu</button>
+    </div>
   </div>
-</div>
-
 </template>
 
-<style>
+<style scoped>
+.menu-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
 
+.botaoMenu {
+  background-color: #444;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.menu-dropdown {
+  margin-top: 10px;
+  background-color: #222;
+  border: 1px solid #555;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-dropdown button {
+  background: none;
+  border: none;
+  color: white;
+  text-align: left;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.menu-dropdown button:hover {
+  background-color: #555;
+}
 </style>

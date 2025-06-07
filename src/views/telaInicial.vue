@@ -1,17 +1,23 @@
 <script scoped>
 import '@/styles/botoes.css';
 import '@/styles/body.css';
+import '@/styles/telaMenu.css';
 
 export default {
   data() {
     return {
-      audio: null
+      audio: null,
+      somClique: null,
+      mostrarMenu: false
     };
   },
   mounted() {
     this.audio = new Audio('/audio/hard-theme/desertbounce-trimmed.wav');
     this.audio.loop = true;
     this.audio.volume = 0.2;
+
+    this.somClique = new Audio('/audio/somButaoClick.mp3');
+    this.somClique.volume = 0.1;
 
     const iniciarMusica = () => {
       this.audio.play();
@@ -21,15 +27,32 @@ export default {
     document.addEventListener('click', iniciarMusica);
   },
   beforeUnmount() {
-    // Parar áudio
     if (this.audio) {
       this.audio.pause();
       this.audio.currentTime = 0;
     }
   },
   methods: {
+    tocarSom() {
+      if (this.somClique) {
+        this.somClique.currentTime = 0;
+        this.somClique.play();
+      }
+    },
     irParaHistoria() {
+      this.tocarSom();
       this.$router.push('/historia');
+    },
+    toggleMenu() {
+      this.mostrarMenu = !this.mostrarMenu;
+    },
+    irParaConfiguracoes() {
+      this.tocarSom();
+      alert("Indo para Configurações...");
+    },
+    irParaCreditos() {
+      this.tocarSom();
+      alert("Indo para Créditos...");
     }
   }
 };
@@ -41,32 +64,15 @@ export default {
   <div class="tela">
     <h1 class="titulo">Push the Box</h1>
     <button @click="irParaHistoria" class="botaoIniciar">INICIAR</button>
-  </div>
 
+    <div class="menu-container">
+      <button @click="toggleMenu" class="botaoMenu">☰ MENU</button>
+
+      <div v-if="mostrarMenu" class="menu-dropdown">
+        <button @click="irParaConfiguracoes">Configurações</button>
+        <button @click="irParaCreditos">Créditos</button>
+      </div>
+    </div>
+  </div>
 </template>
 
-<style scoped>
-.titulo {
-  color: rgb(255, 255, 255);
-  font-family: 'Silkscreen', monospace;
-  font-size: 60px;
-  animation: pulse 8s infinite;
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-
-  50% {
-    transform: scale(1.10);
-    opacity: 0.8;
-  }
-
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-</style>
