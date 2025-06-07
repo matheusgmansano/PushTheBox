@@ -13,11 +13,6 @@
   background-image: url('@/assets/muro.png');
 }
 
-.jogador {
-  background-image: url('@/assets/personagem.png');
-  animation: movimento 1s infinite alternate;
-}
-
 .jogadorObjetivo {
   background-image: url('@/assets/personagemSobObjeto.png');
 }
@@ -62,11 +57,6 @@
   border: 1px rgba(0, 0, 0, 0.2);
 }
 
-@keyframes movimento {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-1px); }
-}
-
 @keyframes pulse {
   0% {
     transform: scale(1);
@@ -82,4 +72,41 @@
     transform: scale(1);
     opacity: 1;
   }
+}
+
+.personagemFrente {
+  background-image: url('@/assets/personagemFrente.png');
+  animation: movimento 1s infinite alternate;
+}
+
+.personagemCostas {
+  background-image: url('@/assets/personagemCostas.png');
+  animation: movimento 1s infinite alternate;
+}
+
+.personagemDireita {
+  background-image: url('@/assets/personagemDireita.png');
+  animation: movimento 1s infinite alternate;
+}
+
+.personagemEsquerda {
+  background-image: url('@/assets/personagemEsquerda.png');
+  animation: movimento 1s infinite alternate;
+}
+
+.personagemFrente,
+.personagemCostas,
+.personagemDireita,
+.personagemEsquerda {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 55px;
+  height: 55px;
+  border: 1px rgba(0, 0, 0, 0.2);  
+}
+
+@keyframes movimento {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-2px); }
 }

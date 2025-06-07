@@ -129,7 +129,7 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
 
                 for (let y = 0; y < novoMapa.length; y++) {
                     for (let x = 0; x < novoMapa[y].length; x++) {
-                        if (novoMapa[y][x] === 'P' && this.mapa1[y][x] === 'L') {  //CASO PERSONAGEM CAIA NA LAVA
+                        if ((novoMapa[y][x] === 'PE' || novoMapa[y][x] === 'PD' || novoMapa[y][x] === 'PC' || novoMapa[y][x] === 'PF') && this.mapa1[y][x] === 'L') {  //CASO PERSONAGEM CAIA NA LAVA
                             this.mostrarDerrota = true;
                             this.jogoAtivo = false;
                             this.tipoDerrota = 'lava';  //PARA SABER QUE SERA A TELA DE DERROTA DA LAVA

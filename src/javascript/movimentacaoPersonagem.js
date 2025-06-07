@@ -1,11 +1,13 @@
 export function mover(mapa, event) {
+    let direcao = ' ';
+
     let yJogador = -1;
     let xJogador = -1;
 
     // Loop para encontrar a posição ATUAL do jogador 'P' no mapa.
     for (let y = 0; y < mapa.length; y++) {
         for (let x = 0; x < mapa[y].length; x++) {
-            if (mapa[y][x] === 'P' || mapa[y][x] === 'JO') {
+            if (mapa[y][x] === 'JO' || mapa[y][x] === 'PE' || mapa[y][x] === 'PD' || mapa[y][x] === 'PF' || mapa[y][x] === 'PC') {
                 yJogador = y; // Linha
                 xJogador = x; // Coluna
                 break; // Sai do segundo FOR se o jogador for encontrado
@@ -25,15 +27,19 @@ export function mover(mapa, event) {
     switch (event.key) {
         case 'ArrowUp':
             yNovo--;
+            direcao = 'PC';
             break;
         case 'ArrowDown':
             yNovo++;
+            direcao = 'PF';
             break;
         case 'ArrowLeft':
             xNovo--;
+            direcao = 'PE';
             break;
         case 'ArrowRight':
             xNovo++;
+            direcao = 'PD';
             break;
         default : 
             return mapa;
@@ -50,7 +56,7 @@ export function mover(mapa, event) {
             } else {
                 mapa[yJogador][xJogador] = ' ';
             }
-            mapa[yNovo][xNovo] = 'P';
+            mapa[yNovo][xNovo] = direcao;
         }
         else if (destinoJogador === 'X'){
             if (mapa[yJogador][xJogador] === 'JO') {
@@ -73,7 +79,7 @@ export function mover(mapa, event) {
                 // Se o espaço depois do bloco não for parede nem outro bloco, permite empurrar.
                 if (destinoBloco !== '#' && destinoBloco !== 'B') {
                     mapa[yDepoisBloco][xDepoisBloco] = 'B'; // Move o bloco para a nova direção.
-                    mapa[yNovo][xNovo] = 'P'; // Move o jogador para onde estava o bloco.
+                    mapa[yNovo][xNovo] = direcao; // Move o jogador para onde estava o bloco.
                     mapa[yJogador][xJogador] = ' '; // Limpa ' ' a posição antiga do jogador.
                 }
             }

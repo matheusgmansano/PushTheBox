@@ -1,5 +1,5 @@
 <script>
-import { mapa1testeLAVA } from '@/mapas/mapa1testeLAVA.js';
+import { mapa2} from '@/mapas/mapa2.js';
 import createScript from '@/javascript/createScript';
 import '@/styles/elementosMapa.css';
 import '@/styles/body.css';
@@ -7,7 +7,7 @@ import '@/styles/botoes.css';
 import '@/styles/telaVitoria.css';
 import '@/styles/telaDerrota.css';
 
-export default createScript(mapa1testeLAVA, '/fase3', 10);
+export default createScript(mapa2, '/fase3', 10);
 </script>
 
 <template>
