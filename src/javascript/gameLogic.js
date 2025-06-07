@@ -4,6 +4,7 @@ export function classeParaPosicao(tipoCelula) {
     if (tipoCelula === 'B') return 'bloco';
     if (tipoCelula === 'X') return 'objetivo';
     if (tipoCelula === 'JO') return 'jogadorObjetivo';
+    if (tipoCelula === 'L') return 'lava';
     // if (tipoCelula === 'BO') return 'blocoObjetivo';
     return 'vazio';
 }

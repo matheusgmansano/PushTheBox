@@ -1,5 +1,5 @@
 <script>
-import { mapa1 } from '@/mapas/mapa1.js';
+import { mapa1testeLAVA } from '@/mapas/mapa1testeLAVA.js';
 import createScript from '@/javascript/createScript';
 import '@/styles/elementosMapa.css';
 import '@/styles/body.css';
@@ -7,16 +7,16 @@ import '@/styles/botoes.css';
 import '@/styles/telaVitoria.css';
 import '@/styles/telaDerrota.css';
 
-export default createScript(mapa1, '/fase2teste', 10);
+export default createScript(mapa1testeLAVA, '/fase3', 10);
 </script>
 
 <template>
 
-  <title>Fase 1</title>
+  <title>Fase 2</title>
   <button @click="voltar" class="botaoVoltar">INÍCIO</button>
 
   <div class="tela">
-    <h1 style="margin-bottom: -10px;">Fase 1</h1>
+    <h1 style="margin-bottom: -10px;">Fase 2</h1>
     <h2 style="color:orange ">{{ cronometro }}</h2>
     <div class="mapa">
       <div v-for="(linha, y) in mapa" :key="y" class="linha">

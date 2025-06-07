@@ -43,11 +43,18 @@
   border: 1px rgba(0, 0, 0, 0.2);
 }
 
+.lava {
+  background-color: red;
+  background-image: url('@/assets/lava.png'); 
+  background-size: cover;
+}
+
 .objetivo,
 .bloco,
 .jogadorObjetivo,
 .jogador,
-.parede {
+.parede,
+.lava {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
