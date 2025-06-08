@@ -8,6 +8,12 @@ import '@/styles/telaVitoria.css';
 import '@/styles/telaDerrota.css';
 import '@/styles/telaMenu.css';
 
+// Importa as funções para controlar o áudio
+import { tocarMusica, pararMusica } from '@/javascript/audio.js';
+
+// Importa a música da fase 1
+import curiousTheme from '@/../public/audio/curious_theme.wav'; // Ajuste o caminho se necessário
+
 export default {
   mixins: [createScript(mapa1, '/historia2', 10)],
   data() {
@@ -17,8 +23,16 @@ export default {
     };
   },
   mounted() {
+    // Configura o som de clique do menu
     this.somClique = new Audio('/audio/somButaoClick.mp3');
     this.somClique.volume = 0.1;
+
+    // Toca a música da fase 1
+    tocarMusica(curiousTheme, 0.2); // Ajuste o volume conforme desejar
+  },
+  beforeUnmount() {
+    // Para a música quando sair da fase
+    pararMusica();
   },
   methods: {
     toggleMenu() {
@@ -49,7 +63,6 @@ export default {
 };
 </script>
 
-
 <template>
   <title>Fase 1</title>
 
@@ -65,7 +78,7 @@ export default {
 
   <div class="tela">
     <h1 style="margin-bottom: -10px;">Fase 1</h1>
-    <h2 style="color:orange ">{{ cronometro }}</h2>
+    <h2 style="color: orange">{{ cronometro }}</h2>
     <div class="mapa">
       <div v-for="(linha, y) in mapa" :key="y" class="linha">
         <div v-for="(tipoCelula, x) in linha" :key="x" :class="classeParaPosicao(y, x)">
@@ -84,14 +97,12 @@ export default {
   </div>
 
   <div v-if="mostrarDerrota" class="telaDerrota">
-  <div class="janela">
-    <h2 v-if="tipoDerrota === 'tempo'">Tempo Esgotado!</h2>
-    <h2 v-else-if="tipoDerrota === 'buraco'">Você caiu no Buraco!</h2>
-    <h2 v-else>Derrota!</h2>
-    <button @click="reiniciar" class="botaoVitoria">Reiniciar</button>
-    <button @click="voltar" class="botaoVitoria">Menu</button>
+    <div class="janela">
+      <h2 v-if="tipoDerrota === 'tempo'">Tempo Esgotado!</h2>
+      <h2 v-else-if="tipoDerrota === 'buraco'">Você caiu no Buraco!</h2>
+      <h2 v-else>Derrota!</h2>
+      <button @click="reiniciar" class="botaoVitoria">Reiniciar</button>
+      <button @click="voltar" class="botaoVitoria">Menu</button>
+    </div>
   </div>
-</div>
-
 </template>
-

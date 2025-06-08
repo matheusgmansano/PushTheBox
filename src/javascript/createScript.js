@@ -1,6 +1,6 @@
 import { mover } from './movimentacaoPersonagem.js';
 import { verificarVitoria } from './checagemVitoria.js';
-import { configurarAudio } from './audio.js';
+import { tocarMusica, pararMusica } from './audio.js'; // Importa as funções atualizadas de áudio
 import { iniciarCronometro, pararCronometro } from './timer.js';
 import { classeParaPosicao as mapearClasse } from './gameLogic.js';
 import { clonarMapa } from './clonarMapa.js';
@@ -18,7 +18,6 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
                 cronometro: 0,
                 intervaloCronometro: null,
                 jogoAtivo: true,
-                audio: null,
                 audioDerrota: null,
                 audioVitoria: null,
             };
@@ -28,33 +27,36 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
             this.mapa = clonarMapa(this.mapa1);
             window.addEventListener('keydown', this.processarMovimento);
             this.iniciarCronometro();
-            this.audio = configurarAudio();
+
+            // Inicializa a música principal da fase
+            // Você pode passar o caminho da música conforme sua lógica
+            tocarMusica('/audio/easy-theme/main_theme_01.wav', 0.2);
+
+            // Sons de derrota e vitória
             this.audioDerrota = new Audio('/audio/somDerrota.mp3');
             this.audioDerrota.volume = 0.3;
             this.audioVitoria = new Audio('/audio/somVitoria.mp3');
-            this.audioVitoria.volume = 0.3;  // Ajuste também
-            console.log(this.mapa)//teste
+            this.audioVitoria.volume = 0.3;
+
+            console.log(this.mapa); // Teste
         },
 
         beforeUnmount() {
             window.removeEventListener('keydown', this.processarMovimento);
             pararCronometro(this.intervaloCronometro);
-            if (this.audio) {
-                this.audio.pause();
-                this.audio.currentTime = 0;
-            }
 
+            // Para a música principal
+            pararMusica();
+
+            // Para os sons de vitória e derrota, se estiverem tocando
             if (this.audioDerrota) {
                 this.audioDerrota.pause();
                 this.audioDerrota.currentTime = 0;
-
             }
             if (this.audioVitoria) {
                 this.audioVitoria.pause();
                 this.audioVitoria.currentTime = 0;
             }
-
-
         },
 
         methods: {
@@ -65,7 +67,7 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
             iniciarCronometro() {
                 let tempoRestante = tempoLimiteSegundos;
                 this.cronometro = tempoRestante;
-                this.tipoDerrota = 'tempo'; // PARA A TELA DE DERROTA SER POR TEMPO CASO APENAS ACABE
+                this.tipoDerrota = 'tempo'; // Para tela de derrota por tempo
 
                 this.intervaloCronometro = setInterval(() => {
                     tempoRestante--;
@@ -76,13 +78,10 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
                         this.mostrarDerrota = true;
                         this.jogoAtivo = false;
 
-                        //PARA A MUSICA PRINCIPAL QUANDO ACABA O TEMPO
-                        if (this.audio) {
-                            this.audio.pause();
-                            this.audio.currentTime = 0;
-                        }
+                        // Para a música principal
+                        pararMusica();
 
-                        // COMECA A TOCAR O SOM DE DERROTA
+                        // Toca som de derrota
                         if (this.audioDerrota) {
                             this.audioDerrota.play();
                         }
@@ -99,12 +98,10 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
                 this.iniciarCronometro();
                 this.jogoAtivo = true;
 
-                if (this.audio) {
-                    this.audio.pause();
-                    this.audio.currentTime = 0;
-                    this.audio.play();
-                }
+                // Reinicia a música principal
+                tocarMusica('/audio/easy-theme/main_theme_01.wav', 0.2);
 
+                // Para sons de vitória e derrota, se estiverem tocando
                 if (this.audioVitoria) {
                     this.audioVitoria.pause();
                     this.audioVitoria.currentTime = 0;
@@ -120,7 +117,6 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
                 this.$router.push('/');
             },
 
-            // Função para processar o movimento do jogador.
             processarMovimento(event) {
                 if (!this.jogoAtivo) return;
 
@@ -129,20 +125,14 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
 
                 for (let y = 0; y < novoMapa.length; y++) {
                     for (let x = 0; x < novoMapa[y].length; x++) {
-                        if ((novoMapa[y][x] === 'PE' || novoMapa[y][x] === 'PD' || novoMapa[y][x] === 'PC' || novoMapa[y][x] === 'PF') && this.mapa1[y][x] === 'BV') {  //CASO PERSONAGEM CAIA NA buraco
+                        if ((novoMapa[y][x] === 'PE' || novoMapa[y][x] === 'PD' || novoMapa[y][x] === 'PC' || novoMapa[y][x] === 'PF') && this.mapa1[y][x] === 'BV') {
                             this.mostrarDerrota = true;
                             this.jogoAtivo = false;
-                            this.tipoDerrota = 'buraco';  // PARA SABER QUE SERA A TELA DE DERROTA DO BURACO
-
+                            this.tipoDerrota = 'buraco';
                             pararCronometro(this.intervaloCronometro);
 
-                            // Para música principal
-                            if (this.audio) {
-                                this.audio.pause();
-                                this.audio.currentTime = 0;
-                            }
+                            pararMusica();
 
-                            // Toca som de derrota
                             if (this.audioDerrota) {
                                 this.audioDerrota.play();
                             }
@@ -150,17 +140,13 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
                             return;
                         }
 
-                        if (novoMapa[y][x] === 'B' && this.mapa1[y][x] === 'BV') {  //CASO BLOCO SEJA EMPURRADO PARA BURACO
+                        if (novoMapa[y][x] === 'B' && this.mapa1[y][x] === 'BV') {
                             this.mostrarDerrota = true;
                             this.jogoAtivo = false;
-                            this.tipoDerrota = 'buraco';   //PARA SABER QUE SERA A TELA DE DERROTA DA BURACO
-
+                            this.tipoDerrota = 'buraco';
                             pararCronometro(this.intervaloCronometro);
 
-                            if (this.audio) {
-                                this.audio.pause();
-                                this.audio.currentTime = 0;
-                            }
+                            pararMusica();
 
                             if (this.audioDerrota) {
                                 this.audioDerrota.play();
@@ -179,13 +165,8 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
                     this.jogoAtivo = false;
                     pararCronometro(this.intervaloCronometro);
 
-                    // Para a música principal
-                    if (this.audio) {
-                        this.audio.pause();
-                        this.audio.currentTime = 0;
-                    }
+                    pararMusica();
 
-                    // Toca som de vitória
                     if (this.audioVitoria) {
                         this.audioVitoria.play();
                     }

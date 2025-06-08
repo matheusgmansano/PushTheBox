@@ -1,6 +1,8 @@
 <script>
 import { mapa2 } from '@/mapas/mapa2.js';
 import createScript from '@/javascript/createScript';
+import { tocarMusica, pararMusica } from '@/javascript/audio.js'; // Importa as funções de música
+import hauntedCastle from '@/../public/audio/hauntedcastle.mp3'; // Caminho da música da fase 2
 import '@/styles/elementosMapa.css';
 import '@/styles/body.css';
 import '@/styles/botoes.css';
@@ -17,8 +19,16 @@ export default {
     };
   },
   mounted() {
+    // Som de clique no menu
     this.somClique = new Audio('/audio/somButaoClick.mp3');
     this.somClique.volume = 0.1;
+
+    // Música da Fase 2
+    tocarMusica(hauntedCastle, 0.2); // Volume ajustável (0.2)
+  },
+  beforeUnmount() {
+    // Para a música quando sair da fase
+    pararMusica();
   },
   methods: {
     toggleMenu() {
@@ -49,7 +59,6 @@ export default {
 };
 </script>
 
-
 <template>
   <title>Fase 2</title>
 
@@ -65,7 +74,7 @@ export default {
 
   <div class="tela">
     <h1 style="margin-bottom: -10px;">Fase 2</h1>
-    <h2 style="color:orange ">{{ cronometro }}</h2>
+    <h2 style="color: orange">{{ cronometro }}</h2>
     <div class="mapa">
       <div v-for="(linha, y) in mapa" :key="y" class="linha">
         <div v-for="(tipoCelula, x) in linha" :key="x" :class="classeParaPosicao(y, x)">
@@ -84,13 +93,12 @@ export default {
   </div>
 
   <div v-if="mostrarDerrota" class="telaDerrota">
-  <div class="janela">
-    <h2 v-if="tipoDerrota === 'tempo'">Tempo Esgotado!</h2>
-    <h2 v-else-if="tipoDerrota === 'buraco'">Você caiu no Buraco!</h2>
-    <h2 v-else>Derrota!</h2>
-    <button @click="reiniciar" class="botaoVitoria">Reiniciar</button>
-    <button @click="voltar" class="botaoVitoria">Menu</button>
+    <div class="janela">
+      <h2 v-if="tipoDerrota === 'tempo'">Tempo Esgotado!</h2>
+      <h2 v-else-if="tipoDerrota === 'buraco'">Você caiu no Buraco!</h2>
+      <h2 v-else>Derrota!</h2>
+      <button @click="reiniciar" class="botaoVitoria">Reiniciar</button>
+      <button @click="voltar" class="botaoVitoria">Menu</button>
+    </div>
   </div>
-</div>
-
 </template>
