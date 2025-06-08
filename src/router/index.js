@@ -8,6 +8,7 @@ import fase2 from '@/views/fase2.vue'
 import fase3 from '@/views/fase3.vue'
 import fase4 from '@/views/fase4.vue'
 import fase5 from '@/views/fase5.vue'
+import fase6 from '@/views/fase6.vue'
 
 
 const routes = [
@@ -20,7 +21,8 @@ const routes = [
   { path: '/fase2', name: 'fase2', component: fase2 },
   { path: '/fase3', name: 'fase3', component: fase3 },
   { path: '/fase4', name: 'fase4', component: fase4 },
-  { path: '/fase5', name: 'fase5', component: fase5 }
+  { path: '/fase5', name: 'fase5', component: fase5 },
+  { path: '/fase6', name: 'fase6', component: fase6 }
   
   ]
 const router = createRouter({
