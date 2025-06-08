@@ -7,7 +7,7 @@ import '@/styles/botoes.css';
 import '@/styles/telaVitoria.css';
 import '@/styles/telaDerrota.css';
 
-export default createScript(mapa1, '/fase2teste', 10);
+export default createScript(mapa1, '/fase2', 10);
 </script>
 
 <template>
