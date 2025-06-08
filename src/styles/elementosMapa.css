@@ -15,6 +15,7 @@
 
 .jogadorObjetivo {
   background-image: url('@/assets/personagemSobObjeto.png');
+  background-size: cover;
 }
 
 .bloco {
@@ -22,7 +23,11 @@
   animation: pulse 5s infinite;
 }
 
-
+.blocoObjetivo {
+  background-image: url('@/assets/caixa.png');
+  animation: pulse 5s infinite;
+  background-size: cover;
+}
 .objetivo {
   background-image: url('@/assets/objetivo.png');
 }
@@ -48,7 +53,8 @@
 .jogadorObjetivo,
 .jogador,
 .parede,
-.blocoVazio {
+.blocoVazio,
+.blocoObjetivo {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
