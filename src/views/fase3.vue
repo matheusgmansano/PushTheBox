@@ -1,5 +1,5 @@
 <script>
-import { mapa2 } from '@/mapas/mapa2.js';
+import { mapa3 } from '@/mapas/mapa3.js';
 import createScript from '@/javascript/createScript';
 import '@/styles/elementosMapa.css';
 import '@/styles/body.css';
@@ -9,7 +9,7 @@ import '@/styles/telaDerrota.css';
 import '@/styles/telaMenu.css';
 
 export default {
-  mixins: [createScript(mapa2, '/fase3', 30)],
+  mixins: [createScript(mapa3, '/fase4', 40)],
   data() {
     return {
       mostrarMenu: false,
@@ -51,7 +51,7 @@ export default {
 
 
 <template>
-  <title>Fase 2</title>
+  <title>Fase 3</title>
 
   <div class="menu-container">
     <button @click="toggleMenu" class="botaoMenu">☰ MENU</button>
@@ -64,7 +64,7 @@ export default {
   </div>
 
   <div class="tela">
-    <h1 style="margin-bottom: -10px;">Fase 2</h1>
+    <h1 style="margin-bottom: -10px;">Fase 3</h1>
     <h2 style="color:orange ">{{ cronometro }}</h2>
     <div class="mapa">
       <div v-for="(linha, y) in mapa" :key="y" class="linha">
