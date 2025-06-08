@@ -11,6 +11,7 @@ import fase5 from '@/views/fase5.vue'
 
 
 const routes = [
+  
   { path: '/', name: 'TelaInicial', component: TelaInicial },
   { path: '/historia', name: 'historia', component: historia },
   { path: '/historia2', name: 'historia2', component: historia2 }, 
@@ -20,6 +21,7 @@ const routes = [
   { path: '/fase3', name: 'fase3', component: fase3 },
   { path: '/fase4', name: 'fase4', component: fase4 },
   { path: '/fase5', name: 'fase5', component: fase5 }
+  
   ]
 const router = createRouter({
   history: createWebHistory(),
