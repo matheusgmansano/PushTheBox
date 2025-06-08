@@ -8,10 +8,8 @@ import '@/styles/telaVitoria.css';
 import '@/styles/telaDerrota.css';
 import '@/styles/telaMenu.css';
 
-<<<<<<< HEAD
-
 export default {
-  mixins: [createScript(mapa1, '/fase2teste', 10)],
+  mixins: [createScript(mapa1, '/fase2', 10)],
   data() {
     return {
       mostrarMenu: false,
@@ -49,15 +47,12 @@ export default {
     }
   }
 };
-=======
-export default createScript(mapa1, '/fase2', 10);
->>>>>>> ebf455a9b9b5feb57c91d3dee5862fca49a614f3
 </script>
+
 
 <template>
   <title>Fase 1</title>
 
-  <!-- Botão de Menu -->
   <div class="menu-container">
     <button @click="toggleMenu" class="botaoMenu">☰ MENU</button>
 

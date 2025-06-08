@@ -1,31 +1,77 @@
 <script>
-import { mapa2} from '@/mapas/mapa2.js';
+import { mapa2 } from '@/mapas/mapa2.js';
 import createScript from '@/javascript/createScript';
 import '@/styles/elementosMapa.css';
 import '@/styles/body.css';
 import '@/styles/botoes.css';
 import '@/styles/telaVitoria.css';
 import '@/styles/telaDerrota.css';
+import '@/styles/telaMenu.css';
 
-export default createScript(mapa2, '/fase3', 10);
+export default {
+  mixins: [createScript(mapa2, '/fase3', 10)],
+  data() {
+    return {
+      mostrarMenu: false,
+      somClique: null
+    };
+  },
+  mounted() {
+    this.somClique = new Audio('/audio/somButaoClick.mp3');
+    this.somClique.volume = 0.1;
+  },
+  methods: {
+    toggleMenu() {
+      this.mostrarMenu = !this.mostrarMenu;
+    },
+    tocarSom() {
+      if (this.somClique) {
+        this.somClique.currentTime = 0;
+        this.somClique.play();
+      }
+    },
+    reiniciarComSom() {
+      this.tocarSom();
+      this.reiniciar();
+    },
+    voltarComSom() {
+      this.tocarSom();
+      this.voltar();
+    },
+    irParaCreditosComSom() {
+      this.tocarSom();
+      this.irParaCreditos();
+    },
+    irParaCreditos() {
+      alert("Indo para Créditos...");
+    }
+  }
+};
 </script>
 
-<template>
 
+<template>
   <title>Fase 2</title>
-  <button @click="voltar" class="botaoVoltar">INÍCIO</button>
+
+  <div class="menu-container">
+    <button @click="toggleMenu" class="botaoMenu">☰ MENU</button>
+
+    <div v-if="mostrarMenu" class="menu-dropdown">
+      <button @click="reiniciarComSom">Reiniciar</button>
+      <button @click="voltarComSom">Voltar início</button>
+      <button @click="irParaCreditosComSom">Créditos</button>
+    </div>
+  </div>
 
   <div class="tela">
-    <h1>Fase 2</h1>
+    <h1 style="margin-bottom: -10px;">Fase 2</h1>
     <h2 style="color:orange ">{{ cronometro }}</h2>
     <div class="mapa">
       <div v-for="(linha, y) in mapa" :key="y" class="linha">
         <div v-for="(tipoCelula, x) in linha" :key="x" :class="classeParaPosicao(y, x)">
-
         </div>
       </div>
     </div>
-    <button @click="reiniciar" class="botaoReiniciar">Reiniciar</button>
   </div>
 
   <div v-if="mostrarProximaFase" class="telaVitoria">
@@ -48,7 +94,3 @@ export default createScript(mapa2, '/fase3', 10);
 </div>
 
 </template>
-
-<style>
-
-</style>
