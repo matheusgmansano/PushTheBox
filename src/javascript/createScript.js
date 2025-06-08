@@ -61,7 +61,24 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
 
         methods: {
             classeParaPosicao(y, x) {
-                return mapearClasse(this.mapa[y][x]);
+                const atual = this.mapa[y][x];
+                const base = this.mapa1[y][x];
+
+                if (atual === 'B' && base === 'X') return 'blocoObjetivo';
+                if ((atual === 'PE' || atual === 'PD' || atual === 'PC' || atual === 'PF') && base === 'X') return 'jogadorObjetivo';
+                if (atual === 'JO') return 'jogadorObjetivo';
+
+                if (atual === 'B') return 'bloco';
+                if (atual === 'PD') return 'personagemDireita';
+                if (atual === 'PE') return 'personagemEsquerda';
+                if (atual === 'PF') return 'personagemFrente';
+                if (atual === 'PC') return 'personagemCostas';
+
+                if (base === '#') return 'parede';
+                if (base === 'X') return 'objetivo';
+                if (base === 'BV') return 'blocoVazio';
+
+                return 'vazio';
             },
 
             iniciarCronometro() {
