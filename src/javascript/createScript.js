@@ -14,7 +14,7 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
                 mensagem: '',
                 mostrarProximaFase: false,
                 mostrarDerrota: false,
-                tipoDerrota: '', // 'tempo', 'lava', etc.
+                tipoDerrota: '', // 'tempo', 'buraco', etc.
                 cronometro: 0,
                 intervaloCronometro: null,
                 jogoAtivo: true,
@@ -45,15 +45,15 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
             }
 
             if (this.audioDerrota) {
-            this.audioDerrota.pause();
-            this.audioDerrota.currentTime = 0;
+                this.audioDerrota.pause();
+                this.audioDerrota.currentTime = 0;
 
             }
             if (this.audioVitoria) {
                 this.audioVitoria.pause();
                 this.audioVitoria.currentTime = 0;
             }
-    
+
 
         },
 
@@ -76,16 +76,16 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
                         this.mostrarDerrota = true;
                         this.jogoAtivo = false;
 
-                    //PARA A MUSICA PRINCIPAL QUANDO ACABA O TEMPO
-                    if (this.audio) {
-                        this.audio.pause();
-                        this.audio.currentTime = 0;
-                    }
+                        //PARA A MUSICA PRINCIPAL QUANDO ACABA O TEMPO
+                        if (this.audio) {
+                            this.audio.pause();
+                            this.audio.currentTime = 0;
+                        }
 
-                    // COMECA A TOCAR O SOM DE DERROTA
-                    if (this.audioDerrota) {
-                        this.audioDerrota.play();
-                    }
+                        // COMECA A TOCAR O SOM DE DERROTA
+                        if (this.audioDerrota) {
+                            this.audioDerrota.play();
+                        }
                     }
                 }, 1000);
             },
@@ -98,7 +98,7 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
                 pararCronometro(this.intervaloCronometro);
                 this.iniciarCronometro();
                 this.jogoAtivo = true;
-                
+
                 if (this.audio) {
                     this.audio.pause();
                     this.audio.currentTime = 0;
@@ -129,10 +129,10 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
 
                 for (let y = 0; y < novoMapa.length; y++) {
                     for (let x = 0; x < novoMapa[y].length; x++) {
-                        if (novoMapa[y][x] === 'P' && this.mapa1[y][x] === 'L') {  //CASO PERSONAGEM CAIA NA LAVA
+                        if ((novoMapa[y][x] === 'PE' || novoMapa[y][x] === 'PD' || novoMapa[y][x] === 'PC' || novoMapa[y][x] === 'PF') && this.mapa1[y][x] === 'BV') {  //CASO PERSONAGEM CAIA NA buraco
                             this.mostrarDerrota = true;
                             this.jogoAtivo = false;
-                            this.tipoDerrota = 'lava';  //PARA SABER QUE SERA A TELA DE DERROTA DA LAVA
+                            this.tipoDerrota = 'buraco';  // PARA SABER QUE SERA A TELA DE DERROTA DO BURACO
 
                             pararCronometro(this.intervaloCronometro);
 
@@ -150,10 +150,10 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
                             return;
                         }
 
-                 if (novoMapa[y][x] === 'B' && this.mapa1[y][x] === 'L') {  //CASO BLOCO SEJA EMPURRADO PARA LAVA
+                        if (novoMapa[y][x] === 'B' && this.mapa1[y][x] === 'BV') {  //CASO BLOCO SEJA EMPURRADO PARA BURACO
                             this.mostrarDerrota = true;
                             this.jogoAtivo = false;
-                             this.tipoDerrota = 'lava';   //PARA SABER QUE SERA A TELA DE DERROTA DA LAVA
+                            this.tipoDerrota = 'buraco';   //PARA SABER QUE SERA A TELA DE DERROTA DA BURACO
 
                             pararCronometro(this.intervaloCronometro);
 

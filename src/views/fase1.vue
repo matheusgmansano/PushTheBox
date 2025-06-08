@@ -8,6 +8,7 @@ import '@/styles/telaVitoria.css';
 import '@/styles/telaDerrota.css';
 import '@/styles/telaMenu.css';
 
+<<<<<<< HEAD
 
 export default {
   mixins: [createScript(mapa1, '/fase2teste', 10)],
@@ -48,6 +49,9 @@ export default {
     }
   }
 };
+=======
+export default createScript(mapa1, '/fase2', 10);
+>>>>>>> ebf455a9b9b5feb57c91d3dee5862fca49a614f3
 </script>
 
 <template>
@@ -87,7 +91,7 @@ export default {
   <div v-if="mostrarDerrota" class="telaDerrota">
   <div class="janela">
     <h2 v-if="tipoDerrota === 'tempo'">Tempo Esgotado!</h2>
-    <h2 v-else-if="tipoDerrota === 'lava'">Você caiu na lava!</h2>
+    <h2 v-else-if="tipoDerrota === 'buraco'">Você caiu no Buraco!</h2>
     <h2 v-else>Derrota!</h2>
     <button @click="reiniciar" class="botaoVitoria">Reiniciar</button>
     <button @click="voltar" class="botaoVitoria">Menu</button>
