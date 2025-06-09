@@ -14,14 +14,7 @@
         </div>
         <button
           v-if="mostrarBotao"
-          @click="voltarMenu"
-          class="botaoHistoria"
-        >
-          🏁 Voltar ao Menu
-        </button>
-        <button
-          v-if="mostrarBotao"
-          @click="voltarMenu"
+          @click="faseEXTRA"
           class="botaoHistoria"
         >
           😫 Fazer HORA-EXTRA
@@ -33,6 +26,7 @@
 
 <script>
 import '@/styles/historia.css';
+import faseEXTRA from './faseEXTRA.vue';
 export default {
   data() {
     return {
@@ -40,28 +34,32 @@ export default {
       falasOriginais: [
         {
           personagem: 'chefe',
-          texto: 'Bom... contra todas as expectativas, você conseguiu terminar tudo.'
-        },
-        {
-          personagem: 'chefe',
-          texto: 'Caixas empurradas, buracos evitados, nenhum prejuízo grande... é, vai ver você não é tão incompetente assim.'
-        },
-        {
-          personagem: 'chefe',
-          texto: 'Como recompensa... tome esse vale-refeição de R$ 15,00. Mas só vale na lanchonete aqui da frente, e não cobre a bebida.'
+          texto: 'Tenho uma oportunidade imperdível para você rapaz!!!'
         },
         {
           personagem: 'empurrilson',
-          texto: 'Só isso?! Depois de tudo que eu fiz?!'
+          texto: 'Lá vem você me explorar de novo...'
         },
         {
           personagem: 'chefe',
-          texto: 'Reclama com o RH. Agora sai da minha frente, que eu tenho mais gente pra explorar... digo, coordenar.'
+          texto: 'O que você pensa que eu sou?? Um carrasco?.'
         },
         {
           personagem: 'empurrilson',
           texto: '...'
-        }
+        },
+        {
+          personagem: 'chefe',
+          texto: 'Enfim... Hora Extra!!!'
+        },
+        {
+          personagem: 'empurrilson',
+          texto: 'Não sei se to afim... Ia tirar um tempo com minha família.'
+        },
+        {
+          personagem: 'chefe',
+          texto: 'Não quero saber, trabalhe ou RUA!!!!!!!'
+        },
       ],
       mostrarBotao: false,
       audioRecebimentoPool: [],

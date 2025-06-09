@@ -6,7 +6,7 @@
     <h2>Desenvolvido por:</h2>
     <p>Davi Bomfim Climaco</p>
     <p>Matheus Gregorio Mansano</p>
-    <p>Matheus Mascarello</p>
+    <p>Matheus De Oliveira Mascarello</p>
     <p>Talis de Mello Sossai</p>
     <p>Heitor Henrique Couto Silva</p>
 

@@ -9,6 +9,7 @@ import Creditos from '@/views/creditos.vue'
 import historia from '@/views/historia.vue'
 import historia2 from '@/views/historia2.vue'
 import historia3 from '@/views/historia3.vue'
+import historiaEXTRA from '@/views/historiaEXTRA.vue'
 import fase1 from '@/views/fase1.vue'
 import fase2 from '@/views/fase2.vue'
 import fase3 from '@/views/fase3.vue'
@@ -19,6 +20,7 @@ import fase7 from '@/views/fase7.vue'
 import fase8 from '@/views/fase8.vue'
 import fase9 from '@/views/fase9.vue'
 import fase10 from '@/views/fase10.vue'
+import faseEXTRA from '@/views/faseEXTRA.vue'
 
 // Define as rotas da aplicação, cada uma com caminho, nome e componente correspondente
 const routes = [
@@ -31,6 +33,7 @@ const routes = [
   { path: '/historia', name: 'historia', component: historia },
   { path: '/historia2', name: 'historia2', component: historia2 },
   { path: '/historia3', name: 'historia3', component: historia3 },
+  { path: '/historiaEXTRA', name: 'historiaEXTRA', component: historiaEXTRA },
 
   // Rotas das fases do jogo
   { path: '/fase1', name: 'fase1', component: fase1 },
@@ -43,6 +46,7 @@ const routes = [
   { path: '/fase8', name: 'fase8', component: fase8 },
   { path: '/fase9', name: 'fase9', component: fase9 },
   { path: '/fase10', name: 'fase10', component: fase10 },
+  { path: '/faseEXTRA', name: 'faseEXTRA', component: faseEXTRA },
 ]
 
 // Cria a instância do roteador com o modo de histórico real do navegador e as rotas definidas acima
