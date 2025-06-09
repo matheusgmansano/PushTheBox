@@ -1,18 +1,13 @@
 <script>
 import { mapa1 } from '@/mapas/mapa1.js';
 import createScript from '@/javascript/createScript';
+import { tocarMusica, pararMusica } from '@/javascript/audio.js';
 import '@/styles/elementosMapa.css';
 import '@/styles/body.css';
 import '@/styles/botoes.css';
 import '@/styles/telaVitoria.css';
 import '@/styles/telaDerrota.css';
 import '@/styles/telaMenu.css';
-
-// Importa as funções para controlar o áudio
-import { tocarMusica, pararMusica } from '@/javascript/audio.js';
-
-// Importa a música da fase 1
-import curiousTheme from '@/../public/audio/curious_theme.wav'; // Ajuste o caminho se necessário
 
 export default {
   mixins: [createScript(mapa1, '/fase2', 10)],
@@ -27,11 +22,10 @@ export default {
     this.somClique = new Audio('/audio/somButaoClick.mp3');
     this.somClique.volume = 0.1;
 
-    // Toca a música da fase 1
-    tocarMusica(curiousTheme, 0.2); // Ajuste o volume conforme desejar
+    // Toca a música da fase 1 usando o caminho absoluto
+    tocarMusica('/audio/main_theme_01.wav', 0.2);
   },
   beforeUnmount() {
-    // Para a música quando sair da fase
     pararMusica();
   },
   methods: {
