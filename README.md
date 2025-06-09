@@ -1,45 +1,53 @@
 # Push the Box
 
-O Push the Box é um jogo simples desenvolvido como parte de um trabalho de faculdade. O objetivo do jogador é empurrar duas caixas até o local designado como objetivo.
+O Push the Box é um jogo simples desenvolvido como parte de um trabalho de faculdade. O objetivo do jogador é empurrar duas ou mais caixas até o local designado como objetivo.
 
 ## Sobre
 
 O projeto foi criado com o objetivo de desenvolver um jogo simples, utilizando conceitos de lógica e programação front-end, para um trabalho acadêmico.
-Desenvolvido por 
+
+## 👨‍💻 Desenvolvedores
 - Davi Bomfim Climaco;
 - Heitor Henrique Couto Silva;
 - Matheus De Oliveira Mascarello;
 - Matheus Gregorio Mansano;
 - Talis de Mello Sossai.
 
-## Instalação
+## Instalação e Execução
 
-Siga os passos abaixos para instalar o projeto e rodar o projeto localmente:
+Siga os passos abaixos para instalar o projeto e executar o projeto localmente:
+
+1. Clone o repositório
 ```sh
-Clone o repositório
 git clone https://github.com/matheusgmansano/PushTheBox.git
+```
 
-Acesse o diretório do projeto
+2. Acesse o diretório do projeto
+```sh
 cd PushTheBox
+```
 
-Instale as depedências
+3. Instale as depedências
+```sh
 npm install
+```
 
-Execute o projeto
+4. Execute o projeto
+```sh
 npm run dev
 ```
-Obs: Certifique-se de ter o Node.js e o git instalados no seu computador.
+⚠️ Certifique-se de ter o Node.js e o Git instalados no seu computador.
 
-## Como jogar
+## 🎮 Como jogar
 
   - Movimentação: Use as teclas direcionais do teclado (↑, ↓, ←, →) para mover o personagem pelo cenário.
   - Objetivo: Empurre as caixas até os locais marcados ou indicados no mapa.
 
 ## Regras importantes:
 
-  - O personagem só consegue empurrar, não puxar as caixas.
+  - O personagem só **apenas empurra** as caixas.
   - Planeje bem os movimentos: se empurrar a caixa para um canto sem saída, talvez não consiga mais movê-la.
-  - Vitória: Você vence a fase quando todas as caixas estiverem posicionadas corretamente nos locais indicados.
+  - Vitória: Você vence a fase quando **todas as caixas** estiverem posicionadas corretamente nos locais indicados.
   - Divirta-se resolvendo os desafios e pensando nas melhores estratégias para completar cada nível!
 
 ## Tecnologias
