@@ -1,5 +1,6 @@
 <template>
   <div class="tela-creditos">
+
     <h1>Créditos</h1>
 
     <h2>Desenvolvido por:</h2>
@@ -14,6 +15,10 @@
 
     <h2>Professor</h2>
     <p>Hugo Fumero</p>
+        <!-- Fundo com várias imagens -->
+    <div class="fundo-imagens">
+      <img src="@/assets/fundo2.png" class="fundo2-img" />
+    </div>
 
     <h2>Design e arte</h2>
     <p>Equipe Push the Box</p>
