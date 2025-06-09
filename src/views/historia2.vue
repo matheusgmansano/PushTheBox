@@ -76,7 +76,7 @@ export default {
   },
   methods: {
     faseBuraco() {
-      this.$router.push('/fase2');
+      this.$router.push('/fase6');
     },
     async exibirDialogo() {
       for (let i = 0; i < this.falasOriginais.length; i++) {

@@ -64,15 +64,6 @@ export default {
   <div class="tela">
     <h1 class="titulo">Push the Box</h1>
     <button @click="irParaHistoria" class="botaoIniciar">INICIAR</button>
-
-    <div class="menu-container">
-      <button @click="toggleMenu" class="botaoMenu">☰ MENU</button>
-
-      <div v-if="mostrarMenu" class="menu-dropdown">
-        <button @click="irParaConfiguracoes">Configurações</button>
-        <button @click="irParaCreditos">Créditos</button>
-      </div>
-    </div>
   </div>
 </template>
 

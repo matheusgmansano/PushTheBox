@@ -15,7 +15,7 @@ import { tocarMusica, pararMusica } from '@/javascript/audio.js';
 import curiousTheme from '@/../public/audio/curious_theme.wav'; // Ajuste o caminho se necessário
 
 export default {
-  mixins: [createScript(mapa1, '/historia2', 10)],
+  mixins: [createScript(mapa1, '/fase2', 10)],
   data() {
     return {
       mostrarMenu: false,

@@ -9,7 +9,7 @@ import '@/styles/telaDerrota.css';
 import '@/styles/telaMenu.css';
 
 export default {
-  mixins: [createScript(mapa5, '/fase6', 40)],
+  mixins: [createScript(mapa5, '/historia2', 40)],
   data() {
     return {
       mostrarMenu: false,
