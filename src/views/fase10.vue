@@ -11,7 +11,7 @@ import '@/styles/telaMenu.css';
 import { mapa10 } from '@/mapas/mapa10';
 
 export default {
-  mixins: [createScript(mapa10, '/creditos', 60)],
+  mixins: [createScript(mapa10, '/historia3', 60)],
   data() {
     return {
       mostrarMenu: false,
