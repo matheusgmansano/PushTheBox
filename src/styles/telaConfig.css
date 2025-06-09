@@ -1,0 +1,35 @@
+.tela-configuracoes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  color: white;
+}
+
+.config-item {
+  margin: 20px 0;
+  font-size: 1.2rem;
+}
+
+input[type="range"] {
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+.botaoSecundario {
+  background-color: transparent;
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  font-size: 25px;
+  cursor: pointer;
+  transition: all 0.3s;
+  letter-spacing: 1px;
+}
+
+.botaoSecundario:hover {
+  background-color: #575958;
+  color: #001a0a;
+  transform: scale(1.15);
+  border-radius: 7px;
+}

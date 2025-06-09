@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import TelaInicial from '@/views/telaInicial.vue'
+import Configuracoes from '@/views/configuracoes.vue'
+import Creditos from '@/views/creditos.vue'
 import historia from '@/views/historia.vue'
 import historia2 from '@/views/historia2.vue'
 import historia3 from '@/views/historia3.vue'
@@ -17,6 +19,8 @@ import fase9 from '@/views/fase9.vue'
 const routes = [
   
   { path: '/', name: 'TelaInicial', component: TelaInicial },
+  { path: '/configuracoes', name: 'Configuracoes', component: Configuracoes },
+  { path: '/creditos', name: 'Creditos', component: Creditos },
   { path: '/historia', name: 'historia', component: historia },
   { path: '/historia2', name: 'historia2', component: historia2 }, 
   { path: '/historia3', name: 'historia3', component: historia3 }, 

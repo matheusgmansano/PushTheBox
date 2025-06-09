@@ -47,12 +47,12 @@ export default {
       this.mostrarMenu = !this.mostrarMenu;
     },
     irParaConfiguracoes() {
-      this.tocarSom();
-      alert("Indo para Configurações...");
-    },
+  this.tocarSom();
+  this.$router.push('/configuracoes');
+},
     irParaCreditos() {
       this.tocarSom();
-      alert("Indo para Créditos...");
+      this.$router.push('/creditos');
     }
   }
 };
@@ -64,6 +64,7 @@ export default {
   <div class="tela">
     <h1 class="titulo">Push the Box</h1>
     <button @click="irParaHistoria" class="botaoIniciar">INICIAR</button>
+    <button @click="irParaCreditos" class="botaoSecundario">CRÉDITOS</button>
+    <button @click="irParaConfiguracoes" class="botaoSecundario">CONFIGURAÇÕES</button>
   </div>
 </template>
-

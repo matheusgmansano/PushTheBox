@@ -76,7 +76,7 @@ export default {
   },
   methods: {
     voltarMenu() {
-      this.$router.push('/menu');
+      this.$router.push('/');
     },
     async exibirDialogo() {
       for (let i = 0; i < this.falasOriginais.length; i++) {
