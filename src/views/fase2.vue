@@ -2,7 +2,6 @@
 import { mapa2 } from '@/mapas/mapa2.js';
 import createScript from '@/javascript/createScript';
 import { tocarMusica, pararMusica } from '@/javascript/audio.js'; // Importa as funções de música
-import hauntedCastle from '@/../public/audio/hauntedcastle.mp3'; // Caminho da música da fase 2
 import '@/styles/elementosMapa.css';
 import '@/styles/body.css';
 import '@/styles/botoes.css';
@@ -23,8 +22,8 @@ export default {
     this.somClique = new Audio('/audio/somButaoClick.mp3');
     this.somClique.volume = 0.1;
 
-    // Música da Fase 2
-    tocarMusica(hauntedCastle, 0.2); // Volume ajustável (0.2)
+    // Música da Fase 2 usando o caminho absoluto
+    tocarMusica('/audio/hauntedcastle.mp3', 0.2);
   },
   beforeUnmount() {
     // Para a música quando sair da fase
