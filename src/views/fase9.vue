@@ -23,7 +23,7 @@ export default {
     this.somClique.volume = 0.1;
 
     // Música da Fase 8
-    tocarMusica('/audio/main_theme_01.wav', 0.2);
+    tocarMusica('/audio/curious_theme.wav', 0.2);
   },
   beforeUnmount() {
     pararMusica();
