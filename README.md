@@ -17,26 +17,26 @@ O projeto foi criado com o objetivo de desenvolver um jogo simples, utilizando c
 
 Siga os passos abaixos para instalar o projeto e executar o projeto localmente:
 
-1. Clone o repositório
+*1. Clone o repositório*
 ```sh
 git clone https://github.com/matheusgmansano/PushTheBox.git
 ```
 
-2. Acesse o diretório do projeto
+*2. Acesse o diretório do projeto*
 ```sh
 cd PushTheBox
 ```
 
-3. Instale as depedências
+*3. Instale as depedências*
 ```sh
 npm install
 ```
 
-4. Execute o projeto
+*4. Execute o projeto*
 ```sh
 npm run dev
 ```
-⚠️ Certifique-se de ter o Node.js e o Git instalados no seu computador.
+⚠️ Certifique-se de ter o **Node.js** e o **Git** instalados no seu computador.
 
 ## 🎮 Como jogar
 
