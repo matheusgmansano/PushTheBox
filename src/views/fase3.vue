@@ -1,7 +1,7 @@
 <script>
 import { mapa3 } from '@/mapas/mapa3.js';
 import createScript from '@/javascript/createScript';
-import { tocarMusica, pararMusica } from '@/javascript/audio.js'; // Importa as funções de música
+import { tocarMusica, pararMusica, toggleMute, estaMutada } from '@/javascript/audio.js';
 import '@/styles/elementosMapa.css';
 import '@/styles/body.css';
 import '@/styles/botoes.css';
@@ -23,13 +23,16 @@ export default {
     this.somClique.volume = 0.1;
 
     // Música da Fase 3
-    tocarMusica('/audio/main_theme_01.wav', 0.4);
+    tocarMusica('/audio/main_theme_01.wav', 0.2);
   },
   beforeUnmount() {
     // Para a música quando sair da fase
     pararMusica();
   },
   methods: {
+    alternarMute() {
+      this.mute = toggleMute(); // alterna e armazena o novo estado de musica mutada ou desmutada
+    },
     toggleMenu() {
       this.mostrarMenu = !this.mostrarMenu;
     },
@@ -61,14 +64,21 @@ export default {
   <title>Fase 3</title>
 
   <div class="menu-container">
-    <button @click="toggleMenu" class="botaoMenu">☰ MENU</button>
+  <!-- Botão de menu -->
+  <button @click="toggleMenu" class="botaoMenu">☰ MENU</button>
 
-    <div v-if="mostrarMenu" class="menu-dropdown">
-      <button @click="reiniciarComSom">Reiniciar</button>
-      <button @click="voltarComSom">Voltar início</button>
-      <button @click="irParaCreditosComSom">Créditos</button>
-    </div>
+  <!-- Botão de som -->
+  <button @click="alternarMute" class="botaoMenu">
+    {{ mute ? '🔇' : '🔊' }}
+  </button>
+
+  <!-- Menu suspenso -->
+  <div v-if="mostrarMenu" class="menu-dropdown">
+    <button @click="reiniciarComSom">Reiniciar</button>
+    <button @click="voltarComSom">Voltar início</button>
+    <button @click="irParaCreditosComSom">Créditos</button>
   </div>
+</div>
 
   <div class="tela">
     <h1 style="margin-bottom: -10px;">Fase 3</h1>

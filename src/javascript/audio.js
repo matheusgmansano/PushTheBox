@@ -6,6 +6,29 @@
  */
 
 let audioPlayer = null; // Variável global para armazenar o áudio atual
+let musicaMutada = false;
+
+/**
+ * Alterna entre mutar e desmutar a música atual
+ * @returns {boolean} - Estado atual do mute (true = mutado)
+ */
+export function toggleMute() {
+    musicaMutada = !musicaMutada;
+
+    if (audioPlayer) {
+        audioPlayer.volume = musicaMutada ? 0 : 0.2;
+    }
+
+    return musicaMutada;
+}
+
+/**
+ * Verifica se a música está mutada
+ * @returns {boolean}
+ */
+export function estaMutada() {
+    return musicaMutada;
+}
 
 /**
  * Função para tocar a música de fundo da fase

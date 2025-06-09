@@ -1,7 +1,7 @@
 <script>
 import { mapa8 } from '@/mapas/mapa8.js';
 import createScript from '@/javascript/createScript';
-import { tocarMusica, pararMusica } from '@/javascript/audio.js';
+import { tocarMusica, pararMusica, toggleMute, estaMutada } from '@/javascript/audio.js';
 import '@/styles/elementosMapa.css';
 import '@/styles/body.css';
 import '@/styles/botoes.css';
@@ -29,6 +29,9 @@ export default {
     pararMusica();
   },
   methods: {
+    alternarMute() {
+      this.mute = toggleMute(); // alterna e armazena o novo estado de musica mutada ou desmutada
+    },
     toggleMenu() {
       this.mostrarMenu = !this.mostrarMenu;
     },
@@ -61,14 +64,21 @@ export default {
   <title>Fase 9</title>
 
   <div class="menu-container">
-    <button @click="toggleMenu" class="botaoMenu">☰ MENU</button>
+  <!-- Botão de menu -->
+  <button @click="toggleMenu" class="botaoMenu">☰ MENU</button>
 
-    <div v-if="mostrarMenu" class="menu-dropdown">
-      <button @click="reiniciarComSom">Reiniciar</button>
-      <button @click="voltarComSom">Voltar início</button>
-      <button @click="irParaCreditosComSom">Créditos</button>
-    </div>
+  <!-- Botão de som -->
+  <button @click="alternarMute" class="botaoMenu">
+    {{ mute ? '🔇' : '🔊' }}
+  </button>
+
+  <!-- Menu suspenso -->
+  <div v-if="mostrarMenu" class="menu-dropdown">
+    <button @click="reiniciarComSom">Reiniciar</button>
+    <button @click="voltarComSom">Voltar início</button>
+    <button @click="irParaCreditosComSom">Créditos</button>
   </div>
+</div>
 
   <div class="tela">
     <h1 style="margin-bottom: -10px;">Fase 9</h1>
