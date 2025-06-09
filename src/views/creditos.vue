@@ -15,7 +15,6 @@
 
     <h2>Professor</h2>
     <p>Hugo Fumero</p>
-        <!-- Fundo com várias imagens -->
     <div class="fundo-imagens">
       <img src="@/assets/fundo2.png" class="fundo2-img" />
     </div>

@@ -1,4 +1,5 @@
 export function classeParaPosicao(tipoCelula) {
+    // Classe dos objetos do mapa
     if (tipoCelula === '#') return 'parede';
     if (tipoCelula === 'B') return 'bloco';
     if (tipoCelula === 'X') return 'objetivo';

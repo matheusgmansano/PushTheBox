@@ -1,4 +1,7 @@
+// Importa as funções do Vue Router necessárias para criar o roteador e usar o histórico de navegação do navegador
 import { createRouter, createWebHistory } from 'vue-router'
+
+// Importa as "views", ou seja, os componentes de tela da aplicação
 import TelaInicial from '@/views/telaInicial.vue'
 import Configuracoes from '@/views/configuracoes.vue'
 import Tutorial from '@/views/tutorial.vue'
@@ -17,16 +20,19 @@ import fase8 from '@/views/fase8.vue'
 import fase9 from '@/views/fase9.vue'
 import fase10 from '@/views/fase10.vue'
 
-
+// Define as rotas da aplicação, cada uma com caminho, nome e componente correspondente
 const routes = [
-  
   { path: '/', name: 'TelaInicial', component: TelaInicial },
   { path: '/configuracoes', name: 'Configuracoes', component: Configuracoes },
   { path: '/tutorial', name: 'Tutorial', component: Tutorial },
   { path: '/creditos', name: 'Creditos', component: Creditos },
+
+  // Rotas da história do jogo
   { path: '/historia', name: 'historia', component: historia },
-  { path: '/historia2', name: 'historia2', component: historia2 }, 
-  { path: '/historia3', name: 'historia3', component: historia3 }, 
+  { path: '/historia2', name: 'historia2', component: historia2 },
+  { path: '/historia3', name: 'historia3', component: historia3 },
+
+  // Rotas das fases do jogo
   { path: '/fase1', name: 'fase1', component: fase1 },
   { path: '/fase2', name: 'fase2', component: fase2 },
   { path: '/fase3', name: 'fase3', component: fase3 },
@@ -37,10 +43,13 @@ const routes = [
   { path: '/fase8', name: 'fase8', component: fase8 },
   { path: '/fase9', name: 'fase9', component: fase9 },
   { path: '/fase10', name: 'fase10', component: fase10 },
-  ]
+]
+
+// Cria a instância do roteador com o modo de histórico real do navegador e as rotas definidas acima
 const router = createRouter({
-  history: createWebHistory(),
-  routes
+  history: createWebHistory(), // Usa o modo history, sem # na URL
+  routes // Passa o array de rotas para o roteador
 })
 
+// Exporta o roteador para ser utilizado no arquivo principal da aplicação (main.js)
 export default router

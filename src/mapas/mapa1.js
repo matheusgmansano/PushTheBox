@@ -7,3 +7,9 @@ export const mapa1 = [
   ['#', ' ', 'B', ' ', ' ', ' ', 'X', '#'],
   ['#', '#', '#', '#', '#', '#', '#', '#']
 ];
+
+// # = parede
+// B = bloco
+// X = objetivo
+// PF = personagem virado para frente
+// ' ' = vazio

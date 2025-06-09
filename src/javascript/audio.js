@@ -56,9 +56,7 @@ export function tocarMusica(src = '/audio/easy-theme/main_theme_01.wav', volume 
     document.addEventListener('click', iniciarMusica);
 }
 
-/**
- * Função para parar a música atual
- */
+//   Função para parar a música atual
 export function pararMusica() {
     if (audioPlayer) {
         audioPlayer.pause();

@@ -1,52 +1,52 @@
-import { mover } from './movimentacaoPersonagem.js';
-import { verificarVitoria } from './checagemVitoria.js';
-import { tocarMusica, pararMusica } from './audio.js'; // Importa as funções atualizadas de áudio
-import { iniciarCronometro, pararCronometro } from './timer.js';
-import { classeParaPosicao as mapearClasse } from './gameLogic.js';
-import { clonarMapa } from './clonarMapa.js';
+// Importações de módulos responsáveis por diferentes partes do jogo.
+import { mover } from './movimentacaoPersonagem.js'; // Função que processa o movimento do personagem.
+import { verificarVitoria } from './checagemVitoria.js'; // Função que verifica se o jogador venceu.
+import { tocarMusica, pararMusica } from './audio.js'; // Funções para controlar a música do jogo.
+import { iniciarCronometro, pararCronometro } from './timer.js'; // Cronômetro do jogo.
+import { classeParaPosicao as mapearClasse } from './gameLogic.js'; // Mapeia caracteres do mapa para classes CSS.
+import { clonarMapa } from './clonarMapa.js'; // Função para copiar o estado inicial do mapa.
 
+// Função que cria e retorna o objeto com a estrutura do componente Vue da fase
 export default function createScript(mapaInicial, proximaFase, tempoLimiteSegundos) {
     return {
         data() {
             return {
-                mapa1: mapaInicial,
-                mapa: [],
-                mensagem: '',
-                mostrarProximaFase: false,
-                mostrarDerrota: false,
-                tipoDerrota: '', // 'tempo', 'buraco', etc.
-                cronometro: 0,
-                intervaloCronometro: null,
-                jogoAtivo: true,
-                audioDerrota: null,
-                audioVitoria: null,
+                mapa1: mapaInicial, // Mapa original da fase, ou seja, não alterado.
+                mapa: [], // Mapa atual, alterado com o movimento do jogador.
+                mensagem: '', // Mensagem de vitória OU derrota.
+                mostrarProximaFase: false, // Exibe botão para ir à próxima fase.
+                mostrarDerrota: false, // Exibe tela de derrota.
+                tipoDerrota: '', // Tipo de derrota: 'tempo', 'buraco', etc.
+                cronometro: 0, // Tempo restante.
+                intervaloCronometro: null, // Referência ao setInterval.
+                jogoAtivo: true, // Flag que determina se o jogo está ativo.
+                audioDerrota: null, // Objeto de som para derrota.
+                audioVitoria: null // Objeto de som para vitória.
             };
         },
 
         mounted() {
+            // Clona o mapa inicial para o mapa atual
             this.mapa = clonarMapa(this.mapa1);
-            window.addEventListener('keydown', this.processarMovimento);
-            this.iniciarCronometro();
+            window.addEventListener('keydown', this.processarMovimento); // Processa as teclas pressionadas
+            this.iniciarCronometro(); // Começa o cronômetro da fase
 
             // Inicializa a música principal da fase
-            // Você pode passar o caminho da música conforme sua lógica
             tocarMusica('/audio/easy-theme/main_theme_01.wav', 0.2);
 
             // Sons de derrota e vitória
             this.audioDerrota = new Audio('/audio/somDerrota.mp3');
             this.audioDerrota.volume = 0.3;
+
             this.audioVitoria = new Audio('/audio/somVitoria.mp3');
             this.audioVitoria.volume = 0.3;
-
-            console.log(this.mapa); // Teste
         },
 
         beforeUnmount() {
+            // Remove o processo de verificar as teclas pressionadas
             window.removeEventListener('keydown', this.processarMovimento);
-            pararCronometro(this.intervaloCronometro);
-
-            // Para a música principal
-            pararMusica();
+            pararCronometro(this.intervaloCronometro); // Para o cronômetro
+            pararMusica(); // Para a música principal
 
             // Para os sons de vitória e derrota, se estiverem tocando
             if (this.audioDerrota) {
@@ -60,6 +60,7 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
         },
 
         methods: {
+            // Retorna a classe CSS com base na posição atual e na posição original do mapa
             classeParaPosicao(y, x) {
                 const atual = this.mapa[y][x];
                 const base = this.mapa1[y][x];
@@ -77,7 +78,7 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
                 if (atual === 'PCO' && base === 'X') return 'personagemCostasObjetivo';
                 if (atual === 'PFO' && base === 'X') return 'personagemFrenteObjetivo';
 
-                // Personagem normal (sem objetivo)
+                // Classes normais
                 if (atual === 'B') return 'bloco';
                 if (atual === 'PD') return 'personagemDireita';
                 if (atual === 'PE') return 'personagemEsquerda';
@@ -91,7 +92,7 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
                 return 'vazio';
             },
 
-
+            // Inicia o cronômetro e verifica derrota por tempo
             iniciarCronometro() {
                 let tempoRestante = tempoLimiteSegundos;
                 this.cronometro = tempoRestante;
@@ -117,6 +118,7 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
                 }, 1000);
             },
 
+            // Reinicia o estado da fase
             reiniciar() {
                 this.mapa = clonarMapa(this.mapa1);
                 this.mostrarProximaFase = false;
@@ -140,17 +142,20 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
                 }
             },
 
+            // Volta para a tela inicial
             voltar() {
                 pararCronometro(this.intervaloCronometro);
                 this.$router.push('/');
             },
 
+            // Processa o movimento do jogador ao pressionar uma tecla
             processarMovimento(event) {
                 if (!this.jogoAtivo) return;
 
                 const novoMapa = mover(this.mapa, event);
                 this.mapa = novoMapa;
 
+                // Verifica se o personagem ou bloco caiu no buraco
                 for (let y = 0; y < novoMapa.length; y++) {
                     for (let x = 0; x < novoMapa[y].length; x++) {
                         if ((novoMapa[y][x] === 'PE' || novoMapa[y][x] === 'PD' || novoMapa[y][x] === 'PC' || novoMapa[y][x] === 'PF') && this.mapa1[y][x] === 'BV') {
@@ -187,6 +192,7 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
 
                 this.mapa = novoMapa;
 
+                // Verifica se o jogador venceu a fase
                 if (verificarVitoria(this.mapa, this.mapa1)) {
                     this.mensagem = 'Parabéns!';
                     this.mostrarProximaFase = true;
@@ -201,6 +207,7 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
                 }
             },
 
+            // Vai para a próxima fase usando o Vue Router
             irParaProximaFase() {
                 this.mostrarProximaFase = false;
                 this.$router.push(proximaFase);
