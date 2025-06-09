@@ -122,7 +122,7 @@ export default {
   <div v-if="mostrarProximaFase" class="telaVitoria">
     <div class="janela">
       <h2>Fase Concluída!</h2>
-      <button @click="irParaProximaFase" class="botaoVitoria">Próxima Fase</button>
+      <button @click="irParaCreditosComSom" class="botaoVitoria">Creditos</button>
       <button @click="reiniciar" class="botaoVitoria">Reiniciar</button>
       <button @click="voltar" class="botaoVitoria">Menu</button>
     </div>

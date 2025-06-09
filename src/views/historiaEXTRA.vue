@@ -83,6 +83,9 @@ export default {
     voltarMenu() {
       this.$router.push('/');
     },
+    faseEXTRA() {
+      this.$router.push('/faseEXTRA');
+    },
     async exibirDialogo() {
       for (let i = 0; i < this.falasOriginais.length; i++) {
         await new Promise(resolve => setTimeout(resolve, 2000));

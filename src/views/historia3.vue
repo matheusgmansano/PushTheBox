@@ -21,7 +21,7 @@
         </button>
         <button
           v-if="mostrarBotao"
-          @click="voltarMenu"
+          @click="historiaEXTRA"
           class="botaoHistoria"
         >
           😫 Fazer HORA-EXTRA
@@ -84,6 +84,9 @@ export default {
   methods: {
     voltarMenu() {
       this.$router.push('/');
+    },
+    historiaEXTRA() {
+      this.$router.push('/historiaEXTRA');
     },
     async exibirDialogo() {
       for (let i = 0; i < this.falasOriginais.length; i++) {
