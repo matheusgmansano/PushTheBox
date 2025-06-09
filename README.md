@@ -13,7 +13,7 @@ O projeto foi criado com o objetivo de desenvolver um jogo simples, utilizando c
 - Matheus Gregorio Mansano;
 - Talis de Mello Sossai.
 
-## Instalação e Execução
+## 🚀 Instalação e Execução
 
 Siga os passos abaixos para instalar o projeto e executar o projeto localmente:
 
