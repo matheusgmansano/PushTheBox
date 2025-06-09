@@ -43,7 +43,7 @@ npm run dev
   - Movimentação: Use as teclas direcionais do teclado (↑, ↓, ←, →) para mover o personagem pelo cenário.
   - Objetivo: Empurre as caixas até os locais marcados ou indicados no mapa.
 
-## 🧠Regras importantes:
+## 🧠 Regras importantes:
 
   - O personagem só **apenas empurra** as caixas.
   - Planeje bem os movimentos: se empurrar a caixa para um canto sem saída, talvez não consiga mais movê-la.
