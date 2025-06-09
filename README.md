@@ -17,7 +17,7 @@ O projeto foi criado com o objetivo de desenvolver um jogo simples, utilizando c
 
 Siga os passos abaixos para instalar o projeto e executar o projeto localmente:
 
-*1. Clone o repositório*
+*1. Clone o repositório no CMD de uma Nova Pasta*
 ```sh
 git clone https://github.com/matheusgmansano/PushTheBox.git
 ```
