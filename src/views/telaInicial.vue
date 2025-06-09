@@ -53,6 +53,10 @@ export default {
     irParaCreditos() {
       this.tocarSom();
       this.$router.push('/creditos');
+    },
+    irParaTutorial() {
+      this.tocarSom();
+      this.$router.push('/tutorial');
     }
   }
 };
@@ -65,6 +69,7 @@ export default {
     <h1 class="titulo">Push the Box</h1>
     <button @click="irParaHistoria" class="botaoIniciar">INICIAR</button>
     <button @click="irParaConfiguracoes" class="botaoSecundario">CONFIGURAÇÕES</button>
+    <button @click="irParaTutorial" class="botaoSecundario">TUTORIAL</button>
     <button @click="irParaCreditos" class="botaoSecundario">CRÉDITOS</button>
   </div>
 </template>
