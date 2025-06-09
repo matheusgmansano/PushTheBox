@@ -47,9 +47,9 @@ export default {
       this.mostrarMenu = !this.mostrarMenu;
     },
     irParaConfiguracoes() {
-  this.tocarSom();
-  this.$router.push('/configuracoes');
-},
+      this.tocarSom();
+      this.$router.push('/configuracoes');
+    },
     irParaCreditos() {
       this.tocarSom();
       this.$router.push('/creditos');
@@ -64,7 +64,7 @@ export default {
   <div class="tela">
     <h1 class="titulo">Push the Box</h1>
     <button @click="irParaHistoria" class="botaoIniciar">INICIAR</button>
-    <button @click="irParaCreditos" class="botaoSecundario">CRÉDITOS</button>
     <button @click="irParaConfiguracoes" class="botaoSecundario">CONFIGURAÇÕES</button>
+    <button @click="irParaCreditos" class="botaoSecundario">CRÉDITOS</button>
   </div>
 </template>

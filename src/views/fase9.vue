@@ -54,7 +54,8 @@ export default {
       this.irParaCreditos();
     },
     irParaCreditos() {
-      alert("Indo para Créditos...");
+      this.tocarSom();
+      this.$router.push('/creditos');
     }
   }
 };
