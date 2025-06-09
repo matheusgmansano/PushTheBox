@@ -2,9 +2,9 @@
 
 O Push the Box é um jogo simples desenvolvido como parte de um trabalho de faculdade. O objetivo do jogador é empurrar duas ou mais caixas até o local designado como objetivo.
 
-## Sobre
+## 🎯 Objetivo do Projeto
 
-O projeto foi criado com o objetivo de desenvolver um jogo simples, utilizando conceitos de lógica e programação front-end, para um trabalho acadêmico.
+O projeto foi criado com o objetivo de desenvolver um jogo simples, utilizando conceitos de **lógica** e **programação front-end**, para um trabalho acadêmico.
 
 ## 👨‍💻 Desenvolvedores
 - Davi Bomfim Climaco;
@@ -43,14 +43,14 @@ npm run dev
   - Movimentação: Use as teclas direcionais do teclado (↑, ↓, ←, →) para mover o personagem pelo cenário.
   - Objetivo: Empurre as caixas até os locais marcados ou indicados no mapa.
 
-## Regras importantes:
+## 🧠Regras importantes:
 
   - O personagem só **apenas empurra** as caixas.
   - Planeje bem os movimentos: se empurrar a caixa para um canto sem saída, talvez não consiga mais movê-la.
   - Vitória: Você vence a fase quando **todas as caixas** estiverem posicionadas corretamente nos locais indicados.
   - Divirta-se resolvendo os desafios e pensando nas melhores estratégias para completar cada nível!
 
-## Tecnologias
+## 🛠️ Tecnologias
 
   - JavaScript
   - CSS
