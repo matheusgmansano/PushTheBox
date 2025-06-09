@@ -64,10 +64,20 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
                 const atual = this.mapa[y][x];
                 const base = this.mapa1[y][x];
 
+                // Se tem bloco sobre objetivo
                 if (atual === 'B' && base === 'X') return 'blocoObjetivo';
-                if ((atual === 'PE' || atual === 'PD' || atual === 'PC' || atual === 'PF') && base === 'X') return 'jogadorObjetivo';
-                if (atual === 'JO') return 'jogadorObjetivo';
 
+                // Personagem sobre objetivo
+                if (atual === 'PD' && base === 'X') return 'personagemDireitaObjetivo';
+                if (atual === 'PE' && base === 'X') return 'personagemEsquerdaObjetivo';
+                if (atual === 'PC' && base === 'X') return 'personagemCostasObjetivo';
+                if (atual === 'PF' && base === 'X') return 'personagemFrenteObjetivo';
+                if (atual === 'PDO' && base === 'X') return 'personagemDireitaObjetivo';
+                if (atual === 'PEO' && base === 'X') return 'personagemEsquerdaObjetivo';
+                if (atual === 'PCO' && base === 'X') return 'personagemCostasObjetivo';
+                if (atual === 'PFO' && base === 'X') return 'personagemFrenteObjetivo';
+
+                // Personagem normal (sem objetivo)
                 if (atual === 'B') return 'bloco';
                 if (atual === 'PD') return 'personagemDireita';
                 if (atual === 'PE') return 'personagemEsquerda';
@@ -80,6 +90,7 @@ export default function createScript(mapaInicial, proximaFase, tempoLimiteSegund
 
                 return 'vazio';
             },
+
 
             iniciarCronometro() {
                 let tempoRestante = tempoLimiteSegundos;

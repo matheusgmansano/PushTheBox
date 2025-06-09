@@ -1,5 +1,6 @@
 export function mover(mapa, event) {
     let direcao = ' ';
+    let direcaoObjetivo = ' ';
 
     let yJogador = -1;
     let xJogador = -1;
@@ -7,7 +8,16 @@ export function mover(mapa, event) {
     // Loop para encontrar a posição ATUAL do jogador 'P' no mapa.
     for (let y = 0; y < mapa.length; y++) {
         for (let x = 0; x < mapa[y].length; x++) {
-            if (mapa[y][x] === 'JO' || mapa[y][x] === 'PE' || mapa[y][x] === 'PD' || mapa[y][x] === 'PF' || mapa[y][x] === 'PC') {
+            if (
+                mapa[y][x] === 'PE' ||
+                mapa[y][x] === 'PD' ||
+                mapa[y][x] === 'PF' ||
+                mapa[y][x] === 'PC' ||
+                mapa[y][x] === 'PCO' ||
+                mapa[y][x] === 'PEO' ||
+                mapa[y][x] === 'PDO' ||
+                mapa[y][x] === 'PFO'
+            ) {
                 yJogador = y; // Linha
                 xJogador = x; // Coluna
                 break; // Sai do segundo FOR se o jogador for encontrado
@@ -16,9 +26,11 @@ export function mover(mapa, event) {
         if (yJogador !== -1) break; // Sai do primeiro FOR se o jogador for encontrado
     }
 
-    // IF utilizado com o objetivo de parar a execução e evitar erros, caso o jogador não seja encontrado.
-    // Retorna o mapa original sem alterações.
+    // Se não encontrou jogador, retorna mapa original
     if (yJogador === -1 || xJogador === -1) return mapa;
+
+    // Salva o valor da célula antiga antes de alterar o mapa
+    let valorCelulaAntiga = mapa[yJogador][xJogador];
 
     let yNovo = yJogador;
     let xNovo = xJogador;
@@ -28,20 +40,24 @@ export function mover(mapa, event) {
         case 'ArrowUp':
             yNovo--;
             direcao = 'PC';
+            direcaoObjetivo = 'PCO';
             break;
         case 'ArrowDown':
             yNovo++;
             direcao = 'PF';
+            direcaoObjetivo = 'PFO';
             break;
         case 'ArrowLeft':
             xNovo--;
             direcao = 'PE';
+            direcaoObjetivo = 'PEO';
             break;
         case 'ArrowRight':
             xNovo++;
             direcao = 'PD';
+            direcaoObjetivo = 'PDO';
             break;
-        default : 
+        default:
             return mapa;
     }
 
@@ -51,21 +67,34 @@ export function mover(mapa, event) {
 
         // Se o destino for DIFERENTE de parede '#' e bloco 'B' permite a movimentação.
         if (destinoJogador !== '#' && destinoJogador !== 'B' && destinoJogador !== 'X') {
-            if (mapa[yJogador][xJogador] === 'JO') {
-                mapa[yJogador][xJogador] = 'X';
+            if (
+                valorCelulaAntiga === 'PFO' ||
+                valorCelulaAntiga === 'PCO' ||
+                valorCelulaAntiga === 'PDO' ||
+                valorCelulaAntiga === 'PEO'
+            ) {
+                mapa[yJogador][xJogador] = 'X'; // volta a ser objetivo
             } else {
-                mapa[yJogador][xJogador] = ' ';
+                mapa[yJogador][xJogador] = ' '; // volta a ser vazio
             }
             mapa[yNovo][xNovo] = direcao;
         }
-        else if (destinoJogador === 'X'){
-            if (mapa[yJogador][xJogador] === 'JO') {
+        // Caso o destino seja um objetivo 'X'
+        else if (destinoJogador === 'X') {
+            if (
+                valorCelulaAntiga === 'PFO' ||
+                valorCelulaAntiga === 'PCO' ||
+                valorCelulaAntiga === 'PDO' ||
+                valorCelulaAntiga === 'PEO'
+            ) {
                 mapa[yJogador][xJogador] = 'X';
             } else {
                 mapa[yJogador][xJogador] = ' ';
             }
-            mapa[yNovo][xNovo] = 'JO';
+            console.log(direcaoObjetivo);
+            mapa[yNovo][xNovo] = direcaoObjetivo;
         }
+
         // Caso o destino for bloco 'B', tenta empurrar o bloco.
         else if (destinoJogador === 'B') {
             // Calcula a posição logo depois do bloco, na mesma direção da movimentação.
@@ -80,12 +109,23 @@ export function mover(mapa, event) {
                 if (destinoBloco !== '#' && destinoBloco !== 'B') {
                     mapa[yDepoisBloco][xDepoisBloco] = 'B'; // Move o bloco para a nova direção.
                     mapa[yNovo][xNovo] = direcao; // Move o jogador para onde estava o bloco.
-                    mapa[yJogador][xJogador] = ' '; // Limpa ' ' a posição antiga do jogador.
+
+                    // Restaura a célula antiga do jogador corretamente
+                    if (
+                        valorCelulaAntiga === 'PFO' ||
+                        valorCelulaAntiga === 'PCO' ||
+                        valorCelulaAntiga === 'PDO' ||
+                        valorCelulaAntiga === 'PEO'
+                    ) {
+                        mapa[yJogador][xJogador] = 'X';
+                    } else {
+                        mapa[yJogador][xJogador] = ' ';
+                    }
                 }
             }
         }
     }
 
-    // Retorna uma cópia do mapa atualizado.
+    // Retorna uma cópia do mapa atualizado para disparar reatividade.
     return [...mapa];
 }
