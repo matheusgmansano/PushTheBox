@@ -1,6 +1,10 @@
 # Push the Box
 
-O Push the Box é um jogo simples desenvolvido como parte de um trabalho de faculdade. O objetivo do jogador é empurrar duas ou mais caixas até o local designado como objetivo.
+**Push the Box** é um jogo simples desenvolvido como parte de um trabalho de faculdade. O objetivo do jogador é empurrar duas ou mais caixas até o local designados no mapa.
+
+## 🎮 Objetivo do Jogador
+
+O objetivo do jogador é empurrar todas as caixas até os pontos marcados no cenário. Cada movimento conta, um passo em falso pode bloquear o caminho e tornar a vitória impossível. Planeje com cuidado, pense estrategicamente e conquiste o desafio!
 
 ## 🎯 Objetivo do Projeto
 
@@ -12,6 +16,10 @@ O projeto foi criado com o objetivo de desenvolver um jogo simples, utilizando c
 - Matheus De Oliveira Mascarello;
 - Matheus Gregorio Mansano;
 - Talis de Mello Sossai.
+
+## 🕹️ Jogue agora
+
+[Clique aqui para jogar online](https://pushthebox.netlify.app/)
 
 ## 🚀 Instalação e Execução
 
